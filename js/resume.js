@@ -21,8 +21,9 @@
   });
 
   // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
+  // https://getbootstrap.com/docs/5.0/components/scrollspy/#methods
+  var scrollSpy = new bootstrap.ScrollSpy(document.body, {
     target: '#sideNav'
-  });
+  })
 
 })(jQuery); // End of use strict

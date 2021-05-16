@@ -82,6 +82,10 @@ p.lead {
   color: #BD5D38;
 }
 
+a {
+  text-decoration: none;
+}
+
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 800;
   letter-spacing: 0.05rem;
