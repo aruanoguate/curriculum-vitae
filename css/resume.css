@@ -82,10 +82,6 @@ p.lead {
   color: #BD5D38;
 }
 
-a {
-  text-decoration: none;
-}
-
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 800;
   letter-spacing: 0.05rem;
@@ -186,12 +182,21 @@ section.resume-section .resume-item .resume-date {
   color: #BD5D38 !important;
 }
 
+.text-md-right {
+  text-align: right !important;
+}
+
 a {
   color: #BD5D38;
+  text-decoration: none;
 }
 
 a:hover, a:focus, a:active {
   color: #824027;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .Emoji--forText {
