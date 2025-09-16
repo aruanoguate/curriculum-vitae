@@ -16,11 +16,10 @@ async function buildResume() {
         // Ensure dist directory exists
         console.log('📁 Creating dist directory...');
         await fs.ensureDir(distDir);
-        await fs.ensureDir(path.join(distDir, 'docs'));
         
         // Copy static assets to dist
         console.log('📋 Copying static assets...');
-        const staticDirs = ['css', 'js', 'img', 'vendor'];
+        const staticDirs = ['css', 'js', 'img', 'vendor', 'docs'];
         const staticFiles = [
             'android-chrome-192x192.png',
             'android-chrome-512x512.png', 
