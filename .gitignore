@@ -25,3 +25,11 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Package manager lock files (optional - keep package-lock.json if desired)
+# package-lock.json
+# yarn.lock
+
+# Temporary files
+.tmp/
+.temp/
