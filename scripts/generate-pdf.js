@@ -1,12 +1,28 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
 const path = require('path');
+const ResumeTemplateEngine = require('./template-engine');
 
-async function generateResumePDF() {
+async function generateResumePDF(templatePath = null, outputPath = null) {
     console.log('🚀 Starting PDF generation process...');
     
     let browser;
     try {
+        let htmlContent;
+        
+        if (templatePath) {
+            // Use provided template path
+            console.log(`📄 Reading HTML template from: ${templatePath}`);
+            htmlContent = await fs.readFile(templatePath, 'utf8');
+        } else {
+            // Generate the PDF template from data source (backward compatibility)
+            console.log('📄 Generating PDF template from data source...');
+            const dataPath = path.join(__dirname, '..', 'data', 'resume-data.json');
+            const templateEngine = new ResumeTemplateEngine(dataPath);
+            await templateEngine.loadData();
+            htmlContent = templateEngine.generatePDFHTML();
+        }
+
         // Launch browser
         console.log('📖 Launching browser...');
         browser = await puppeteer.launch({
@@ -31,11 +47,6 @@ async function generateResumePDF() {
             height: 1600,
             deviceScaleFactor: 2
         });
-
-        // Read the HTML template
-        console.log('📄 Reading HTML template...');
-        const templatePath = path.join(__dirname, '..', 'resume-template.html');
-        const htmlContent = await fs.readFile(templatePath, 'utf8');
 
         // Set the content
         await page.setContent(htmlContent, {
@@ -63,22 +74,22 @@ async function generateResumePDF() {
         });
 
         // Ensure docs directory exists
-        const docsDir = path.join(__dirname, '..', 'docs');
+        const finalOutputPath = outputPath || path.join(__dirname, '..', 'docs', 'AlvaroRuano_Resume.pdf');
+        const docsDir = path.dirname(finalOutputPath);
         await fs.ensureDir(docsDir);
 
         // Save PDF
-        const pdfPath = path.join(docsDir, 'AlvaroRuano_Resume.pdf');
-        await fs.writeFile(pdfPath, pdfBuffer);
+        await fs.writeFile(finalOutputPath, pdfBuffer);
 
         // Get file size for reporting
-        const stats = await fs.stat(pdfPath);
+        const stats = await fs.stat(finalOutputPath);
         const fileSizeKB = Math.round(stats.size / 1024);
 
         console.log('✅ PDF generated successfully!');
-        console.log(`📁 Location: ${pdfPath}`);
+        console.log(`📁 Location: ${finalOutputPath}`);
         console.log(`📏 File size: ${fileSizeKB} KB`);
         
-        return pdfPath;
+        return finalOutputPath;
 
     } catch (error) {
         console.error('❌ Error generating PDF:', error);
