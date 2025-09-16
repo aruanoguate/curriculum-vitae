@@ -44,6 +44,15 @@ jobs:
       - name: Build site with PDF
         run: npm run build-all
         
+      - name: List generated files for debugging
+        run: |
+          echo "Generated CSS files:"
+          ls -la css/ || echo "No CSS files found"
+          echo "Generated PDF:"
+          ls -la docs/AlvaroRuano_resume.pdf || echo "No PDF found"
+          echo "Generated JS files:"
+          ls -la js/ || echo "No JS files found"
+        
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
