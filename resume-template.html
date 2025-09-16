@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alvaro Enrique Ruano - Resume</title>
+    <style>
+        /* ATS-Optimized PDF Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #000000;
+            background: white;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+        }
+
+        /* Typography for ATS compatibility */
+        h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 8pt;
+            text-transform: none;
+            color: #000000;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 12pt;
+            margin-bottom: 6pt;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 2pt;
+            color: #000000;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 8pt;
+            margin-bottom: 4pt;
+            color: #000000;
+        }
+
+        h4 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-bottom: 2pt;
+            color: #000000;
+        }
+
+        p {
+            margin-bottom: 6pt;
+            text-align: justify;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            margin-bottom: 16pt;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 2pt;
+            text-align: center;
+        }
+
+        /* Experience and Education Items */
+        .resume-item {
+            margin-bottom: 12pt;
+            break-inside: avoid;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4pt;
+        }
+
+        .job-title {
+            font-weight: bold;
+            font-size: 11pt;
+        }
+
+        .company {
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 2pt;
+        }
+
+        .date-range {
+            font-weight: normal;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        /* Lists */
+        ul {
+            margin-left: 16pt;
+            margin-bottom: 6pt;
+        }
+
+        li {
+            margin-bottom: 2pt;
+        }
+
+        /* Skills section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8pt;
+            margin-bottom: 12pt;
+        }
+
+        .skill-category {
+            margin-bottom: 6pt;
+        }
+
+        .skill-category h4 {
+            margin-bottom: 3pt;
+        }
+
+        /* Certifications */
+        .cert-item {
+            margin-bottom: 6pt;
+        }
+
+        .cert-name {
+            font-weight: bold;
+        }
+
+        .cert-issuer {
+            font-style: italic;
+        }
+
+        /* Page break handling */
+        @media print {
+            body {
+                padding: 0.3in;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .no-break {
+                break-inside: avoid;
+            }
+        }
+
+        /* Remove any decorative elements for ATS */
+        .decorative {
+            display: none;
+        }
+
+        /* Ensure text is selectable and searchable */
+        body, p, h1, h2, h3, h4, h5, h6, li, span, div {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="contact-info">
+        <h1>Alvaro Enrique Ruano</h1>
+        <p>Guatemala City, Guatemala</p>
+        <p>Phone: (+502) 5930-2117</p>
+        <p>Email: alvaro.ruano90@outlook.com</p>
+        <p>LinkedIn: linkedin.com/in/aruanoguate</p>
+        <p>GitHub: github.com/aruanoguate</p>
+    </header>
+
+    <!-- Professional Summary -->
+    <section>
+        <h2>Professional Summary</h2>
+        <p>Seasoned software engineer with over a decade of experience in software development, business analysis, project management, and engineering leadership. Proven track record of leading technical teams, implementing cloud solutions, and driving digital transformation initiatives. Expertise in leveraging technology to help businesses achieve their objectives with a collaborative approach to problem-solving and continuous learning mindset.</p>
+    </section>
+
+    <!-- Core Competencies -->
+    <section>
+        <h2>Core Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Leadership & Management</h4>
+                <ul>
+                    <li>Engineering Team Leadership</li>
+                    <li>Software Development Lifecycle</li>
+                    <li>Agile/Scrum Methodologies</li>
+                    <li>Project Management</li>
+                    <li>Cross-functional Collaboration</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Technical Expertise</h4>
+                <ul>
+                    <li>Cloud Architecture (Azure, AWS)</li>
+                    <li>C#, .NET Framework/.NET Core</li>
+                    <li>JavaScript, TypeScript, Angular</li>
+                    <li>SQL Server, Database Design</li>
+                    <li>DevOps, CI/CD</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section>
+        <h2>Professional Experience</h2>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">Director of Engineering</h3>
+                    <p class="company">Relish (RelishIQ)</p>
+                </div>
+                <span class="date-range">January 2022 – Present</span>
+            </div>
+            <p>Lead the technical organization including software development, DevOps, architecture, and quality assurance for a cloud-based, multi-tenant SaaS platform supporting enterprise procurement and spend management workflows.</p>
+            <ul>
+                <li>Report directly to CTO and served as interim VP of Technology (February 2024 – December 2024) reporting to CEO</li>
+                <li>Define system design patterns, quality standards, and implementation strategies aligned with business outcomes</li>
+                <li>Partner with vendors and cloud providers to optimize operations across AWS and Azure environments</li>
+                <li>Lead cloud cost control, performance optimization, and usage efficiency initiatives with focus on ROI</li>
+                <li>Oversee growth and maturation of software engineering, QA (manual and automation), and DevOps departments</li>
+                <li>Mentor team leads and engineers at all levels while collaborating with InfoSec and Support functions</li>
+            </ul>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">Software Engineering Manager</h3>
+                    <p class="company">Conduent</p>
+                </div>
+                <span class="date-range">February 2017 – January 2022</span>
+            </div>
+            <p>Provided leadership and supervision to a team of 14 developers and QA specialists supporting proprietary Workers Compensation Bill Review system.</p>
+            <ul>
+                <li>Managed development of data ingestion and extraction applications handling XML, ANSI X12, PDF, and TIFF formats</li>
+                <li>Led development of SaaS platform including legacy .NET Web Forms maintenance and new Angular cloud-native application on Azure</li>
+                <li>Oversaw reporting platform using Crystal Reports, SAP Business Objects BI, and SQL Server Data Warehouse</li>
+                <li>Implemented SDLC best practices and coding standards across all teams</li>
+                <li>Spearheaded migration to Microsoft Azure platform</li>
+            </ul>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">Business Analyst</h3>
+                    <p class="company">Conduent</p>
+                </div>
+                <span class="date-range">April 2015 – February 2017</span>
+            </div>
+            <p>Ensured smooth operation of compliance reporting platforms for various state governments across the USA by managing technological and human resources while interpreting business requirements.</p>
+            <ul>
+                <li>Maintained communication between compliance department and software developers as technical product owner</li>
+                <li>Defined requirements for applications built using .NET Framework and SQL Server</li>
+                <li>Enhanced functionality and efficiency of compliance reporting systems</li>
+            </ul>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">Senior Software Developer</h3>
+                    <p class="company">Banco Agromercantil de Guatemala</p>
+                </div>
+                <span class="date-range">August 2011 – March 2015</span>
+            </div>
+            <p>Led critical software development projects and managed a team of six developers for internal bank software development initiatives.</p>
+            <ul>
+                <li>Directed migration of legacy Cobol-based system to .NET Framework</li>
+                <li>Created new modules within COBIS core banking engine</li>
+                <li>Integrated third-party service providers into e-Banking application</li>
+                <li>Developed ETL processes for Business Objects BI platform</li>
+                <li>Designed in-house ticketing system for ISO 20,000 certified organization</li>
+                <li>Managed project requirements gathering, software design, and production support</li>
+            </ul>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">Junior Software Developer</h3>
+                    <p class="company">Citi</p>
+                </div>
+                <span class="date-range">March 2011 – August 2011</span>
+            </div>
+            <p>Designed and developed new features for e-Banking systems across Central America following secure software development practices.</p>
+            <ul>
+                <li>Executed full Software Development Lifecycle (SDLC) phases</li>
+                <li>Worked with SQL Server, .NET Framework, C#, and ASP.NET Web Forms</li>
+                <li>Built applications following n-layer architecture with rigorous security standards</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+        <h2>Education</h2>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3>Master of Business Administration</h3>
+                    <p class="company">ENAE Business School</p>
+                </div>
+                <span class="date-range">2015 – Present</span>
+            </div>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3>Master of Finance</h3>
+                    <p class="company">Universidad Rafael Landívar</p>
+                </div>
+                <span class="date-range">2013 – 2015</span>
+            </div>
+            <p><strong>Academic Excellence Diploma</strong></p>
+        </div>
+
+        <div class="resume-item">
+            <div class="job-header">
+                <div>
+                    <h3>Information Systems Engineering</h3>
+                    <p class="company">Universidad Rafael Landívar</p>
+                </div>
+                <span class="date-range">2008 – 2013</span>
+            </div>
+            <p><strong>Magna Cum Laude</strong></p>
+            <p><strong>Excellence in Values Award 2012</strong> - Asociación de Estudiantes de Ingeniería (AEI)</p>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section>
+        <h2>Certifications</h2>
+
+        <div class="cert-item">
+            <span class="cert-name">Microsoft Certified: Azure Developer Associate</span> | 
+            <span class="cert-issuer">Microsoft</span> | 
+            <span class="date-range">March 2021 – March 2023</span>
+        </div>
+
+        <div class="cert-item">
+            <span class="cert-name">Microsoft Certified: Azure Data Fundamentals</span> | 
+            <span class="cert-issuer">Microsoft</span> | 
+            <span class="date-range">May 2021</span>
+        </div>
+
+        <div class="cert-item">
+            <span class="cert-name">Microsoft Certified: Azure Fundamentals</span> | 
+            <span class="cert-issuer">Microsoft</span> | 
+            <span class="date-range">November 2020</span>
+        </div>
+
+        <div class="cert-item">
+            <span class="cert-name">Duolingo English Test</span> | 
+            <span class="cert-issuer">Duolingo</span> | 
+            <span class="date-range">February 2020 – February 2022</span>
+        </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section>
+        <h2>Open Source Contributions</h2>
+        <ul>
+            <li><strong>gitflow-in-azure-devops</strong> - Creator of utility for Azure DevOps Git flow implementation</li>
+            <li><strong>pretix-qpaypro</strong> - Creator of payment processing plugin</li>
+            <li><strong>Pretix</strong> - Collaborator on ticketing platform versions v2.30, v2.40, v2.50, v2.60</li>
+            <li><strong>Visual Studio Code</strong> - Spanish translator for versions v1.31-v1.43</li>
+        </ul>
+    </section>
+
+    <!-- Additional Information -->
+    <section>
+        <h2>Additional Information</h2>
+        <ul>
+            <li><strong>Languages:</strong> Spanish (Native), English (Proficient)</li>
+            <li><strong>Interests:</strong> Technology Innovation, Global Travel, International Cuisine, Cinema</li>
+            <li><strong>Location:</strong> Guatemala City, Guatemala (Open to remote work)</li>
+        </ul>
+    </section>
+</body>
+
+</html>

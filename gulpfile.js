@@ -10,6 +10,10 @@ const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass")(require('sass-embedded'));
 const uglify = require("gulp-uglify");
+const { exec } = require('child_process');
+const { promisify } = require('util');
+
+const execAsync = promisify(exec);
 
 // Clean vendor
 function clean() {
@@ -77,9 +81,24 @@ function watchFiles() {
   gulp.watch("./js/**/*", js);
 }
 
+// PDF generation task
+async function generatePDF() {
+  console.log('🚀 Generating ATS-optimized resume PDF...');
+  try {
+    const { stdout, stderr } = await execAsync('node scripts/generate-pdf.js');
+    console.log(stdout);
+    if (stderr) console.error(stderr);
+    console.log('✅ PDF generation completed successfully!');
+  } catch (error) {
+    console.error('❌ PDF generation failed:', error);
+    throw error;
+  }
+}
+
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
 const build = gulp.series(vendor, gulp.parallel(css, js));
+const buildWithPDF = gulp.series(build, generatePDF);
 const watch = gulp.series(build, watchFiles);
 
 // Export tasks
@@ -88,5 +107,7 @@ exports.js = js;
 exports.clean = clean;
 exports.vendor = vendor;
 exports.build = build;
+exports.pdf = generatePDF;
+exports.buildWithPDF = buildWithPDF;
 exports.watch = watch;
 exports.default = build;

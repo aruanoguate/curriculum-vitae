@@ -3,6 +3,10 @@ node_modules
 # Build artifacts
 css/
 vendor/
+docs/AlvaroRuano_resume.pdf
+
+# Generated files by build process
+js/resume.min.js
 
 # OS files
 .DS_Store

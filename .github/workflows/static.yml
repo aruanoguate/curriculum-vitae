@@ -41,8 +41,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Build site
-        run: npx gulp build
+      - name: Build site with PDF
+        run: npm run build-all
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
