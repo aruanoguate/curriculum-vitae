@@ -6,10 +6,11 @@ dist/
 # Build artifacts
 css/
 vendor/
-docs/AlvaroRuano_resume.pdf
+docs/AlvaroRuano_Resume.pdf
 
-# Generated files by build process
-js/resume.min.js
+# Generated minified files
+*.min.js
+*.min.css
 
 # OS files
 .DS_Store
