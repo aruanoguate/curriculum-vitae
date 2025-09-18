@@ -2,11 +2,9 @@
     "name": "alvaro-ruano-cv",
     "version": "1.0.0",
     "scripts": {
-        "build": "gulp",
-        "build-all": "gulp buildWithPDF",
-        "build-resume": "node scripts/build-resume.js",
-        "dev": "npm run build-resume && concurrently \"gulp watch\" \"live-server dist --port=8000 --no-browser\"",
-        "generate-pdf": "node scripts/generate-pdf.js"
+        "build": "gulp buildSite",
+        "build-pdf": "node scripts/generate-pdf.js",
+        "dev": "npm run build && concurrently \"gulp watch\" \"live-server dist --port=8000 --no-browser\""
     },
     "description": "Alvaro Ruano's professional curriculum vitae and portfolio website",
     "keywords": [

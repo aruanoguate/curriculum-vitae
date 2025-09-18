@@ -1,5 +1,5 @@
-# Build and deploy static content to GitHub Pages
-name: Build and Deploy to Pages
+# Build resume from unified data source and deploy to GitHub Pages
+name: Build and Deploy Resume
 
 on:
   # Runs on pushes targeting the default branch
@@ -41,17 +41,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Build site with PDF
-        run: npm run build-all
+      - name: Build complete website with PDF
+        run: npm run build
         
       - name: List generated files for debugging
         run: |
-          echo "Generated CSS files:"
-          ls -la css/ || echo "No CSS files found"
+          echo "Generated files in dist/ directory:"
+          ls -la dist/ || echo "No dist directory found"
+          echo "Generated website files:"
+          ls -la dist/index.html dist/resume-template.html || echo "No HTML files found"
           echo "Generated PDF:"
-          ls -la docs/AlvaroRuano_resume.pdf || echo "No PDF found"
+          ls -la dist/docs/AlvaroRuano_Resume.pdf || echo "No PDF found"
+          echo "Generated CSS files:"
+          ls -la dist/css/ || echo "No CSS files found"
           echo "Generated JS files:"
-          ls -la js/ || echo "No JS files found"
+          ls -la dist/js/ || echo "No JS files found"
+          echo "Vendor libraries:"
+          ls -la dist/vendor/ || echo "No vendor files found"
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -59,8 +65,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the built site
-          path: '.'
+          # Upload the generated dist directory
+          path: './dist'
           
       - name: Deploy to GitHub Pages
         id: deployment

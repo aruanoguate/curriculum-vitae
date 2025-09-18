@@ -57,7 +57,7 @@ A modern, responsive curriculum vitae and portfolio website with automated PDF g
 
 3. **Generate the website and PDF**
    ```bash
-   npm run build-resume
+   npm run build
    ```
 
 ## 🔨 Development Workflow
@@ -66,10 +66,9 @@ A modern, responsive curriculum vitae and portfolio website with automated PDF g
 
 | Command | Description |
 |---------|-------------|
-| `npm run build-resume` | **Main command**: Generate website and PDF from data |
+| `npm run build` | **Main command**: Complete website with PDF generation |
+| `npm run build-pdf` | **Debug command**: Generate PDF only (for testing) |
 | `npm run dev` | Start development server with live reload + file watching |
-| `npm run build` | Build CSS and vendor files only |
-| `npm run generate-pdf` | Generate PDF only (requires existing HTML) |
 
 ### Development Process
 
@@ -85,7 +84,7 @@ This command runs two processes simultaneously:
 ### Updating Resume Content
 
 1. **Edit the data file**: `data/resume-data.json`
-2. **Regenerate everything**: `npm run build-resume`
+2. **Regenerate everything**: `npm run build`
 3. **Both website and PDF are automatically updated**
 
 ### What happens during development:
@@ -192,7 +191,7 @@ The project uses **GitHub Actions** for automatic deployment:
 
 1. **Push to `master`** triggers the workflow
 2. **Dependencies installed** with Node.js 22
-3. **Full build process runs** (`npm run build-resume`)
+3. **Full build process runs** (`npm run build`)
 4. **Site deployed** to GitHub Pages automatically
 
 The deployed site includes:
@@ -205,7 +204,7 @@ The deployed site includes:
 For manual deployment to any static hosting:
 
 ```bash
-npm run build-resume
+npm run build
 # Upload the entire 'dist/' directory to your hosting provider
 ```
 
@@ -214,7 +213,7 @@ npm run build-resume
 ### Content Updates
 
 1. **Edit `data/resume-data.json`** with your information
-2. **Run `npm run build-resume`** to regenerate everything
+2. **Run `npm run build`** to regenerate everything
 3. **Both website and PDF are automatically synchronized**
 
 ### Styling Customization
@@ -285,7 +284,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### For Maintenance
 - Always edit `data/resume-data.json` instead of generated HTML files
-- Use `npm run build-resume` to regenerate after any data changes
+- Use `npm run build` to regenerate after any data changes
 - The `dist/` directory contains everything needed for deployment
 - Version control tracks only source files, not generated output
 

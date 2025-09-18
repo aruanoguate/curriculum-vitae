@@ -95,10 +95,24 @@ async function generatePDF() {
   }
 }
 
+// Build resume from unified data source (website + PDF)
+async function buildResume() {
+  console.log('🏗️ Building complete resume from unified data source...');
+  try {
+    const { stdout, stderr } = await execAsync('node scripts/build-resume.js');
+    console.log(stdout);
+    if (stderr) console.error(stderr);
+    console.log('✅ Resume build completed successfully!');
+  } catch (error) {
+    console.error('❌ Resume build failed:', error);
+    throw error;
+  }
+}
+
 // Define complex tasks
 const vendor = gulp.series(clean, modules);
 const build = gulp.series(vendor, gulp.parallel(css, js));
-const buildWithPDF = gulp.series(build, generatePDF);
+const buildSite = gulp.series(vendor, gulp.parallel(css, js), buildResume);
 const watch = gulp.series(build, watchFiles);
 
 // Export tasks
@@ -108,6 +122,7 @@ exports.clean = clean;
 exports.vendor = vendor;
 exports.build = build;
 exports.pdf = generatePDF;
-exports.buildWithPDF = buildWithPDF;
+exports.buildSite = buildSite;
+exports.buildResume = buildResume;
 exports.watch = watch;
-exports.default = build;
+exports.default = buildSite;
