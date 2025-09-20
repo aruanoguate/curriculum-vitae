@@ -135,30 +135,45 @@ class ResumeTemplateEngine {
         <br />
         <p class="lead mb-5">${summary.detailed}</p>
         
-        <ul class="fa-ul mb-0">
-${(() => {
-  const links = [...contact.links];
-  const hasResume = links.some(l => /resume/i.test(l.text));
-  if (!hasResume && personal.resumePdf) {
-    links.unshift({
-      icon: 'fas fa-file-pdf',
-      text: 'Resume (PDF)',
-      url: personal.resumePdf,
-      download: 'AlvaroRuano_Resume.pdf'
-    });
-  }
-  return links.map(link => {
-    const downloadAttr = link.download ? ` 
-          download="${link.download}" type="application/pdf"` : '';
-    return `          <li>
-        <i class="fa-li ${link.icon}" aria-hidden="true"></i>
-        <a href="${link.url}" 
-          target="_blank" 
-          rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
-       </li>`;
-  }).join('\n');
-})()}
-        </ul>
+        <!-- Primary Links: LinkedIn & Resume -->
+        <div class="contact-section-primary mb-4">
+          <ul class="fa-ul mb-0">
+${contact.primary.map(link => {
+  const downloadAttr = link.download ? ` 
+            download="${link.download}" type="application/pdf"` : '';
+  return `            <li>
+          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
+          <a href="${link.url}" 
+            target="_blank" 
+            rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
+         </li>`;
+}).join('\n')}
+          </ul>
+        </div>
+
+        <!-- Contact Information: Phone & Email -->
+        <div class="contact-section-info mb-4">
+          <ul class="fa-ul mb-0">
+${contact.contact.map(link => `            <li>
+          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
+          <a href="${link.url}" 
+            target="_blank" 
+            rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
+         </li>`).join('\n')}
+          </ul>
+        </div>
+
+        <!-- Additional Links: GitHub, SlideShare, etc. -->
+        <div class="contact-section-links">
+          <ul class="fa-ul mb-0">
+${contact.links.map(link => `            <li>
+          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
+          <a href="${link.url}" 
+            target="_blank" 
+            rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
+         </li>`).join('\n')}
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -257,7 +272,7 @@ ${collaborations.map(collab => `          <li>
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
       <div class="w-100">
         <h2 class="mb-5">Interests</h2>
-        <p>${interests.summary}</p>
+        <p class="lead fs-3 mb-4">${interests.summary}</p>
         <br />
         <div class="social-icons">
 ${social.map(link => `          <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">

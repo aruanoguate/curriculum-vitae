@@ -44,8 +44,13 @@ function modules() {
 // CSS task
 function css() {
   return gulp
-    .src("./scss/**/*.scss")
-    .pipe(plumber())
+    .src("./scss/**/*.scss") // Only watch SCSS source files, never the CSS output
+    .pipe(plumber({
+      errorHandler: function(err) {
+        console.log('CSS Error:', err.toString());
+        this.emit('end');
+      }
+    }))
     .pipe(sass({
       outputStyle: "expanded",
       includePaths: "./node_modules",
@@ -54,38 +59,49 @@ function css() {
     .pipe(autoprefixer({
       cascade: false
     }))
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("./css")) // Output regular CSS
     .pipe(rename({
       suffix: ".min"
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest("./css"))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest("./css")) // Output minified CSS
+    .pipe(browserSync.stream()); // Safe to stream CSS changes
 }
 
 // JS task
 function js() {
   return gulp
-    .src([
-      './js/*.js',
-      '!./js/*.min.js'
-    ])
-    .pipe(uglify())
+    .src('./scripts/resume.js') // Source from scripts directory
+    .pipe(plumber({
+      errorHandler: function(err) {
+        console.log('JS Error:', err.toString());
+        this.emit('end');
+      }
+    }))
+    .pipe(gulp.dest('./dist/js')) // Copy original to dist/js
+    .pipe(uglify()) // Then minify
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./js'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('./dist/js')); // Output minified version alongside original
 }
 
-// Watch files
+// Watch files with clean source/output separation
 function watchFiles() {
-  // Watch only source SCSS files
+  // Watch source SCSS files → output to css/
   gulp.watch(["./scss/**/*.scss"], css);
-  // Watch only non-minified JS to avoid infinite loop when writing *.min.js
-  gulp.watch(["./js/*.js", "!./js/*.min.js"], js);
-  // Rebuild site + PDF when data or template scripts change
-  gulp.watch(["./data/**/*.json", "./scripts/**/*.js"], buildResume);
+  
+  // Watch source JS files in scripts/ → output to dist/js/
+  gulp.watch(["./scripts/resume.js"], gulp.series(js, function(done) {
+    browserSync.reload();
+    done();
+  }));
+  
+  // Rebuild site + PDF when data or template scripts change (with debouncing)
+  gulp.watch(["./data/**/*.json", "./scripts/**/*.js"], { delay: 500 }, buildResume);
+  
+  // Watch HTML files for browser reload (but don't rebuild)
+  gulp.watch(["./dist/**/*.html"]).on('change', browserSync.reload);
 }
 
 // BrowserSync Server

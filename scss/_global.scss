@@ -141,3 +141,52 @@ p.lead {
     }
   }
 }
+
+// Contact section styling - unified styling for all groups
+.contact-section-primary,
+.contact-section-info,
+.contact-section-links {
+  .fa-ul li {
+    margin-bottom: 0.75rem;
+    
+    i.fa-li {
+      color: $gray-600;
+    }
+    
+    a {
+      font-size: 1rem;
+      color: $gray-700;
+      text-decoration: none;
+      
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Interests section styling for better prominence
+#interests {
+  .lead.fs-3 {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $gray-700;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    
+    // Mobile responsive sizing
+    @media (max-width: 767px) {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      text-align: left;
+    }
+    
+    @media (min-width: 992px) {
+      font-size: 1.8rem;
+      line-height: 1.6;
+    }
+  }
+}

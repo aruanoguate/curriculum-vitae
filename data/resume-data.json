@@ -16,18 +16,20 @@
     "detailed": "Hands-on Technology Director with 10+ years of leadership experience across software engineering, architecture, DevOps, and QA operations. Proven track record of scaling engineering teams from startup to enterprise, delivering cloud-native SaaS platforms, and aligning technology strategy with business objectives in fast-paced B2B environments.<br><br>Expert in driving technical excellence while mentoring cross-functional teams, optimizing development pipelines, and designing scalable processes that support growth and operational stability. Passionate about cloud infrastructure, modern development practices, and emerging technologies including IoT and AI.<br><br>Skilled at bridging engineering and business domains—experienced in budget management, release planning, vendor integration, and stakeholder alignment. Seeking technology leadership roles or consulting opportunities where strategic vision and technical depth create measurable impact."
   },
   "contact": {
-    "links": [
+    "primary": [
+      {
+        "icon": "fab fa-linkedin-in",
+        "text": "LinkedIn",
+        "url": "https://www.linkedin.com/in/aruanoguate"
+      },
       {
         "icon": "fas fa-file-pdf",
         "text": "Resume (PDF)",
         "url": "generated-pdf/AlvaroRuano_Resume.pdf",
         "download": "AlvaroRuano_Resume.pdf"
-      },
-      {
-        "icon": "fas fa-map-marked-alt",
-        "text": "Guatemala City, Guatemala",
-        "url": "https://visitguatemala.com/por-que-guatemala/?lang=en"
-      },
+      }
+    ],
+    "contact": [
       {
         "icon": "fas fa-mobile-alt",
         "text": "(+502) 5930-2117",
@@ -37,12 +39,9 @@
         "icon": "fas fa-envelope-open-text",
         "text": "alvaro.ruano90@outlook.com",
         "url": "mailto:alvaro.ruano90@outlook.com"
-      },
-      {
-        "icon": "fab fa-linkedin-in",
-        "text": "LinkedIn",
-        "url": "https://www.linkedin.com/in/aruanoguate"
-      },
+      }
+    ],
+    "links": [
       {
         "icon": "fab fa-github",
         "text": "GitHub",
@@ -245,7 +244,7 @@
     }
   ],
   "interests": {
-    "summary": "Wanderlust-driven globetrotter 🌍✈️. Foodie savoring global flavors 🍽. Cinephile lost in movie magic 🎬. Engineer with a passion for new tech 📱.",
+    "summary": "Exploring the world, one adventure at a time! 🌍✈️ A passionate foodie on a delicious journey �. Engineer by trade, always curious about new tech 📱",
     "detailed": [
       "Technology Innovation",
       "Global Travel",
@@ -256,18 +255,23 @@
   "social": [
     {
       "platform": "Instagram",
-      "url": "https://www.instagram.com/aruanogram",
+      "url": "https://www.instagram.com/aruano.gt",
       "icon": "fab fa-instagram"
     },
     {
       "platform": "Facebook",
-      "url": "https://www.facebook.com/aruanoguate",
+      "url": "https://www.facebook.com/aruano.gt",
       "icon": "fab fa-facebook-f"
     },
     {
       "platform": "Twitter",
       "url": "https://twitter.com/aruanoguate",
       "icon": "fab fa-twitter"
+    },
+    {
+      "platform": "Pinterest",
+      "url": "https://www.pinterest.com/aruanogt",
+      "icon": "fab fa-pinterest"
     }
   ],
   "languages": [

@@ -20,11 +20,9 @@ async function buildResume() {
         
         // Copy static assets to dist
         console.log('📋 Copying static assets...');
-    // Directories whose contents may change during dev (exclude large / static vendor & img re-copy)
-    // css & js change frequently (rebuilt by gulp tasks); docs rarely; img considered static so handled separately.
-    // We now treat docs similar to img/vendor: copy once unless an explicit refresh is requested to avoid
-    // unlink races when BrowserSync triggers overlapping builds.
-    const staticDirs = ['css', 'js'];
+    // CSS changes frequently (rebuilt by gulp tasks)
+    // JS is now pre-built by gulp to dist/js/ so we don't need to copy from source
+    const staticDirs = ['css'];
         const staticFiles = [
             'android-chrome-192x192.png',
             'android-chrome-512x512.png', 
@@ -43,6 +41,12 @@ async function buildResume() {
                 await fs.copy(srcDir, destDir);
                 console.log(`   ✅ Copied ${dir}/`);
             }
+        }
+
+        // JS is now handled by gulp task and already in dist/js/ - no copy needed
+        const jsDestDir = path.join(distDir, 'js');
+        if (await fs.pathExists(jsDestDir)) {
+            console.log('   ✅ JS already built to dist/js/');
         }
 
         // Ensure vendor copied only once (prevents race / unlink errors during rapid rebuilds)
