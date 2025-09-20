@@ -510,7 +510,7 @@ ${social.map(link => `          <a href="${link.url}" target="_blank" rel="noope
     <!-- Professional Summary -->
     <section class="professional-summary">
         <h2>Professional Summary</h2>
-        <p>${summary.brief}</p>
+        <p>${summary.detailed}</p>
     </section>
 
     <!-- Core Competencies -->
