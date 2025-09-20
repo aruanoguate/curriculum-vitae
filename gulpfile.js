@@ -80,10 +80,12 @@ function js() {
 
 // Watch files
 function watchFiles() {
-  gulp.watch("./scss/**/*", css);
-  gulp.watch("./js/**/*", js);
-  gulp.watch("./data/**/*", buildResume);
-  gulp.watch("./scripts/**/*", buildResume);
+  // Watch only source SCSS files
+  gulp.watch(["./scss/**/*.scss"], css);
+  // Watch only non-minified JS to avoid infinite loop when writing *.min.js
+  gulp.watch(["./js/*.js", "!./js/*.min.js"], js);
+  // Rebuild site + PDF when data or template scripts change
+  gulp.watch(["./data/**/*.json", "./scripts/**/*.js"], buildResume);
 }
 
 // BrowserSync Server
@@ -112,8 +114,16 @@ async function generatePDF() {
   }
 }
 
-// Build resume from unified data source (website + PDF)
+// Build resume from unified data source (website + PDF) with single-flight guard to prevent overlap
+let buildInFlight = false;
+let pendingBuild = false;
 async function buildResume() {
+  if (buildInFlight) {
+    // Coalesce multiple rapid triggers into a single follow-up build
+    pendingBuild = true;
+    return;
+  }
+  buildInFlight = true;
   console.log('🏗️ Building complete resume from unified data source...');
   try {
     const { stdout, stderr } = await execAsync('node scripts/build-resume.js');
@@ -123,7 +133,13 @@ async function buildResume() {
     browserSync.reload();
   } catch (error) {
     console.error('❌ Resume build failed:', error);
-    throw error;
+  } finally {
+    buildInFlight = false;
+    if (pendingBuild) {
+      pendingBuild = false;
+      // Schedule next build after small delay to batch further rapid changes
+      setTimeout(() => buildResume(), 100);
+    }
   }
 }
 

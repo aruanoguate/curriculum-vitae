@@ -1,11 +1,21 @@
 const fs = require('fs-extra');
-const path = require('path');
 
 class ResumeTemplateEngine {
     constructor(dataPath) {
         this.dataPath = dataPath;
         this.data = null;
     }
+
+  // Basic HTML escaping for meta / text fields that should not render HTML
+  static escape(html) {
+    if (typeof html !== 'string') return html;
+    return html
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
     async loadData() {
         try {
@@ -22,29 +32,33 @@ class ResumeTemplateEngine {
             throw new Error('Data not loaded. Call loadData() first.');
         }
 
-        const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, meta } = this.data;
+  const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, meta } = this.data;
+
+  const metaDescription = ResumeTemplateEngine.escape(meta.description);
+  const metaKeywords = ResumeTemplateEngine.escape(meta.keywords);
+  const metaAuthor = ResumeTemplateEngine.escape(meta.author);
+  const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
 
         return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136092850-1"></script>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MENRKMGQ3M"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-
-    gtag('config', 'UA-136092850-1');
+    gtag('config', 'G-MENRKMGQ3M');
   </script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="${meta.description}">
-  <meta name="keywords" content="${meta.keywords}">
-  <meta name="author" content="${meta.author}">
+  <meta name="description" content="${metaDescription}">
+  <meta name="keywords" content="${metaKeywords}">
+  <meta name="author" content="${metaAuthor}">
   <meta name="wot-verification" content="362806dc14a211a9e9bc" />
-  <link rel="canonical" href="${meta.canonical}" />
+  <link rel="canonical" href="${metaCanonical}" />
 
   <title>${personal.name}</title>
 
@@ -72,7 +86,7 @@ class ResumeTemplateEngine {
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="">
+  <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -116,13 +130,28 @@ class ResumeTemplateEngine {
         <p class="lead mb-5">${summary.detailed}</p>
         
         <ul class="fa-ul mb-0">
-${contact.links.map(link => `          <li>
-            <i class="fa-li ${link.icon}"></i>
-            <a href="${link.url}" 
-               target="_blank" 
-               rel="noopener"${link.download ? ` 
-               download="${link.download}"` : ''}>${link.text}</a>
-          </li>`).join('\n')}
+${(() => {
+  const links = [...contact.links];
+  const hasResume = links.some(l => /resume/i.test(l.text));
+  if (!hasResume && personal.resumePdf) {
+    links.unshift({
+      icon: 'fas fa-file-pdf',
+      text: 'Resume (PDF)',
+      url: personal.resumePdf,
+      download: 'AlvaroRuano_Resume.pdf'
+    });
+  }
+  return links.map(link => {
+    const downloadAttr = link.download ? ` 
+          download="${link.download}" type="application/pdf"` : '';
+    return `          <li>
+        <i class="fa-li ${link.icon}" aria-hidden="true"></i>
+        <a href="${link.url}" 
+          target="_blank" 
+          rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
+       </li>`;
+  }).join('\n');
+})()}
         </ul>
       </div>
     </section>
@@ -200,7 +229,7 @@ ${certifications.map(cert => `        <div class="resume-item d-flex flex-column
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="collaborations">
       <div class="w-100">
         <h2 class="mb-5">Collaborations</h2>
-        <p class="lead mb-5">I've been mentioned as colaborator on the below open source projects:</p>
+  <p class="lead mb-5">I've been mentioned as collaborator on the below open source projects:</p>
         <ul class="fa-ul mb-0">
 ${collaborations.map(collab => `          <li>
             <i class="fa-li fa fa-check"></i>
@@ -219,8 +248,8 @@ ${collaborations.map(collab => `          <li>
         <p>${interests.summary}</p>
         <br />
         <div class="social-icons">
-${social.map(link => `          <a href="${link.url}" target="_blank" rel="noopener">
-            <i class="${link.icon}"></i>
+${social.map(link => `          <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">
+            <i class="${link.icon}" aria-hidden="true"></i>
           </a>`).join('\n')}
         </div>
       </div>
@@ -259,12 +288,7 @@ ${social.map(link => `          <a href="${link.url}" target="_blank" rel="noope
     <title>${personal.name} - Resume</title>
     <style>
         /* ATS-Optimized PDF Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+  // Resume PDF link dynamically uses personal.resumePdf path (generated)
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
             font-size: 10pt;

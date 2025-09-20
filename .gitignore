@@ -6,7 +6,6 @@ dist/
 # Build artifacts
 css/
 vendor/
-docs/AlvaroRuano_Resume.pdf
 
 # Generated minified files
 *.min.js
@@ -22,7 +21,6 @@ ehthumbs.db
 Thumbs.db
 
 # IDE files
-.vscode/
 .idea/
 *.swp
 *.swo

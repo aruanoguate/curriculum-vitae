@@ -77,9 +77,13 @@ A modern, responsive curriculum vitae and portfolio website with automated PDF g
 npm run dev
 ```
 
-This command runs two processes simultaneously:
-- **Gulp Watch**: Monitors SCSS, JS, and data files for changes
-- **Live Server**: Serves the site at `http://localhost:8000` with browser auto-refresh
+This command starts a single integrated Gulp + BrowserSync development server:
+- Rebuilds SCSS → CSS (min + non‑min)
+- Minifies JavaScript
+- Regenerates website + PDF template + PDF on data/script changes
+- Live-reloads the browser at `http://localhost:8000`
+
+PDF generation intentionally runs even in dev so the downloadable resume always stays in sync while you iterate.
 
 ### Updating Resume Content
 
@@ -115,8 +119,9 @@ curriculum-vitae/
 ├── dist/                 # 🚀 Generated output (deployment ready)
 │   ├── index.html        # Generated website
 │   ├── resume-template.html # Generated PDF template
-│   ├── docs/
-│   │   └── AlvaroRuano_Resume.pdf # Generated ATS-optimized PDF
+│   ├── generated-pdf/    # Auto-generated PDFs (resume)
+│   │   └── AlvaroRuano_Resume.pdf
+│   ├── docs/             # Static assets (certifications, diplomas, images)
 │   ├── css/             # Compiled CSS files
 │   ├── js/              # Minified JavaScript
 │   ├── img/             # Images and assets
@@ -148,20 +153,36 @@ curriculum-vitae/
 - **`css/`** - Compiled CSS output
 - **`vendor/`** - Third-party libraries (Bootstrap, FontAwesome, jQuery)
 
-## � Data Structure
+## 📑 Data Structure
 
-The `data/resume-data.json` file contains all resume information:
+All content lives in `data/resume-data.json` as the single source of truth. A simplified shape of the current schema:
 
-```json
+```jsonc
 {
-  "personalInfo": { "name": "...", "title": "...", "contact": {...} },
-  "summary": "Professional summary text...",
-  "experience": [{ "company": "...", "position": "...", "dates": "...", "highlights": [...] }],
-  "education": [{ "institution": "...", "degree": "...", "year": "..." }],
-  "certifications": [{ "name": "...", "issuer": "...", "year": "..." }],
-  "skills": { "category": ["skill1", "skill2"] },
-  "projects": [{ "name": "...", "description": "...", "technologies": [...] }],
-  "interests": [...]
+   "personal": {
+      "name": "Alvaro Enrique Ruano",
+      "shortName": "Alvaro Ruano",
+      "title": "Director of Engineering",
+      "location": "…",
+      "phone": "…",
+      "email": "…",
+      "website": "…",
+      "linkedin": "…",
+      "github": "…",
+      "profileImage": "img/profile.jpg",
+      "resumePdf": "docs/AlvaroRuano_Resume.pdf"
+   },
+   "summary": { "detailed": "HTML-enabled summary (allows <br>)" },
+   "contact": { "links": [ { "icon": "fas fa-…", "text": "…", "url": "…" } ] },
+   "experience": [ { "title": "…", "company": "…", "period": "…", "detailedDescription": "HTML-enabled" } ],
+   "education": [ { "degree": "…", "institution": "…", "period": "…", "achievements": ["…"] } ],
+   "certifications": [ { "name": "…", "issuer": "…", "period": "…", "credentialUrl": "…" } ],
+   "skills": { "leadership": ["…"], "technical": ["…"] },
+   "collaborations": [ { "name": "…", "role": "…", "url": "…", "description": "…" } ],
+   "interests": { "summary": "…", "detailed": ["…"] },
+   "social": [ { "platform": "…", "url": "…", "icon": "…" } ],
+   "languages": [ { "language": "…", "proficiency": "…" } ],
+   "meta": { "description": "…", "keywords": "…", "author": "…", "canonical": "…", "lastUpdated": "YYYY-MM-DD" }
 }
 ```
 
@@ -257,11 +278,13 @@ The `ResumeTemplateEngine` class:
 
 ## 🔒 Security
 
-- **Dependencies updated** to latest stable versions
-- **No known vulnerabilities** in production dependencies
-- **Secure deployment** via GitHub Actions
-- **HTTPS enabled** on GitHub Pages
-- **Safe PDF generation** with sandboxed Puppeteer
+- Dependencies are routinely updated; run `npm audit` to view current status.
+- GitHub Actions workflow builds from source and deploys static output only.
+- HTTPS enforced via GitHub Pages.
+- Puppeteer runs headless Chromium with restricted flags suitable for static HTML → PDF generation.
+- Recommendation: periodically run `npm audit fix` (review changes first) and keep Node version aligned with `.nvmrc`.
+
+> Note: Previous README wording claiming “No known vulnerabilities” was removed—security posture is dynamic and should be verified at build time.
 
 ## 📄 License
 

@@ -10,7 +10,7 @@
     "linkedin": "https://www.linkedin.com/in/aruanoguate",
     "github": "https://github.com/aruanoguate",
     "profileImage": "img/profile.jpg",
-    "resumePdf": "docs/AlvaroRuano_Resume.pdf"
+  "resumePdf": "generated-pdf/AlvaroRuano_Resume.pdf"
   },
   "summary": {
     "detailed": "Hands-on Technology Director with 10+ years of leadership experience across software engineering, architecture, DevOps, and QA operations. Proven track record of scaling engineering teams from startup to enterprise, delivering cloud-native SaaS platforms, and aligning technology strategy with business objectives in fast-paced B2B environments.<br><br>Expert in driving technical excellence while mentoring cross-functional teams, optimizing development pipelines, and designing scalable processes that support growth and operational stability. Passionate about cloud infrastructure, modern development practices, and emerging technologies including IoT and AI.<br><br>Skilled at bridging engineering and business domains—experienced in budget management, release planning, vendor integration, and stakeholder alignment. Seeking technology leadership roles or consulting opportunities where strategic vision and technical depth create measurable impact."
@@ -20,7 +20,7 @@
       {
         "icon": "fas fa-file-pdf",
         "text": "Resume (PDF)",
-        "url": "docs/AlvaroRuano_Resume.pdf",
+        "url": "generated-pdf/AlvaroRuano_Resume.pdf",
         "download": "AlvaroRuano_Resume.pdf"
       },
       {
