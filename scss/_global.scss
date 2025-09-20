@@ -166,27 +166,50 @@ p.lead {
   }
 }
 
-// Interests section styling for better prominence
+// Interests section styling for better visual balance
 #interests {
-  .lead.fs-3 {
-    font-size: 1.6rem;
+  .lead.fs-4 {
+    font-size: 1.4rem;
     line-height: 1.5;
     font-weight: 400;
     color: $gray-700;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
     
     // Mobile responsive sizing
     @media (max-width: 767px) {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       line-height: 1.4;
-      text-align: left;
     }
     
     @media (min-width: 992px) {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       line-height: 1.6;
+    }
+  }
+  
+  .social-section {
+    .social-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      @media (min-width: 992px) {
+        justify-content: flex-end;
+      }
+      
+      a {
+        margin: 0.5rem;
+        transition: all 0.3s ease;
+        
+        @media (min-width: 992px) {
+          margin: 0 0.75rem;
+          margin-left: 0.75rem;
+        }
+        
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+      }
     }
   }
 }

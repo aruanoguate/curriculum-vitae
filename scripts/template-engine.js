@@ -272,12 +272,22 @@ ${collaborations.map(collab => `          <li>
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
       <div class="w-100">
         <h2 class="mb-5">Interests</h2>
-        <p class="lead fs-3 mb-4">${interests.summary}</p>
-        <br />
-        <div class="social-icons">
-${social.map(link => `          <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">
-            <i class="${link.icon}" aria-hidden="true"></i>
-          </a>`).join('\n')}
+        
+        <!-- Summary and social icons layout -->
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-8 col-xl-7">
+            <p class="lead fs-4 mb-4 mb-lg-0">${interests.summary}</p>
+          </div>
+          
+          <div class="col-12 col-lg-4 col-xl-5">
+            <div class="social-section text-center text-lg-end mt-3 mt-lg-0">
+              <div class="social-icons">
+${social.map(link => `                <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">
+                  <i class="${link.icon}" aria-hidden="true"></i>
+                </a>`).join('\n')}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
