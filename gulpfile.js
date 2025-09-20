@@ -10,6 +10,7 @@ const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass")(require('sass-embedded'));
 const uglify = require("gulp-uglify");
+const browserSync = require("browser-sync").create();
 const { exec } = require('child_process');
 const { promisify } = require('util');
 
@@ -58,7 +59,8 @@ function css() {
       suffix: ".min"
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("./css"))
+    .pipe(browserSync.stream());
 }
 
 // JS task
@@ -72,13 +74,28 @@ function js() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./js'));
+    .pipe(gulp.dest('./js'))
+    .pipe(browserSync.stream());
 }
 
 // Watch files
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
   gulp.watch("./js/**/*", js);
+  gulp.watch("./data/**/*", buildResume);
+  gulp.watch("./scripts/**/*", buildResume);
+}
+
+// BrowserSync Server
+function browserSyncServe(cb) {
+  browserSync.init({
+    server: {
+      baseDir: "./dist"
+    },
+    port: 8000,
+    open: false
+  });
+  cb();
 }
 
 // PDF generation task
@@ -103,6 +120,7 @@ async function buildResume() {
     console.log(stdout);
     if (stderr) console.error(stderr);
     console.log('✅ Resume build completed successfully!');
+    browserSync.reload();
   } catch (error) {
     console.error('❌ Resume build failed:', error);
     throw error;
@@ -114,6 +132,7 @@ const vendor = gulp.series(clean, modules);
 const build = gulp.series(vendor, gulp.parallel(css, js));
 const buildSite = gulp.series(vendor, gulp.parallel(css, js), buildResume);
 const watch = gulp.series(build, watchFiles);
+const serve = gulp.series(buildSite, browserSyncServe, watchFiles);
 
 // Export tasks
 exports.css = css;
@@ -125,4 +144,5 @@ exports.pdf = generatePDF;
 exports.buildSite = buildSite;
 exports.buildResume = buildResume;
 exports.watch = watch;
+exports.serve = serve;
 exports.default = buildSite;

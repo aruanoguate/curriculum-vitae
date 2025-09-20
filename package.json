@@ -4,7 +4,7 @@
     "scripts": {
         "build": "gulp buildSite",
         "build-pdf": "node scripts/generate-pdf.js",
-        "dev": "npm run build && concurrently \"gulp watch\" \"live-server dist --port=8000 --no-browser\""
+        "dev": "gulp serve"
     },
     "description": "Alvaro Ruano's professional curriculum vitae and portfolio website",
     "keywords": [
@@ -28,7 +28,7 @@
         "jquery.easing": "^1.4.1"
     },
     "devDependencies": {
-        "concurrently": "^9.2.1",
+        "browser-sync": "^3.0.4",
         "del": "^6.1.1",
         "fs-extra": "^11.3.2",
         "gulp": "^4.0.2",
@@ -38,7 +38,6 @@
         "gulp-rename": "^2.1.0",
         "gulp-sass": "^6.0.1",
         "gulp-uglify": "^3.0.2",
-        "live-server": "^1.2.2",
         "merge-stream": "^2.0.0",
         "puppeteer": "^24.21.0",
         "sass-embedded": "^1.92.1"
