@@ -17,7 +17,20 @@
 
   // Closes responsive menu when a scroll trigger link is clicked
   $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
+    // Use Bootstrap 5's Collapse API
+    const navbarCollapse = document.getElementById('navbarSupportedContent');
+    if (navbarCollapse) {
+      const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      } else {
+        // Create new collapse instance if it doesn't exist
+        const collapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        collapse.hide();
+      }
+    }
   });
 
   // Activate scrollspy to add active class to navbar items on scroll

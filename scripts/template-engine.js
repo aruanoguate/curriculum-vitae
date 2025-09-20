@@ -202,7 +202,7 @@ ${experience.map(job => `        <div class="resume-item d-flex flex-column flex
             </div>
             <p>${job.detailedDescription}</p>
           </div>
-          <div class="resume-date text-md-right d-none d-md-block">
+          <div class="resume-date text-md-end d-none d-md-block">
             <span class="text-primary">${job.period}</span>
           </div>
         </div>`).join('\n\n')}
@@ -233,7 +233,7 @@ ${edu.achievements.map(achievement => `              <li>
               </li>`).join('\n')}
             </ul>` : ''}
           </div>
-          <div class="resume-date text-md-right d-none d-md-block">
+          <div class="resume-date text-md-end d-none d-md-block">
             <span class="text-primary">${edu.period}</span>
           </div>
         </div>`).join('\n\n')}
@@ -254,7 +254,7 @@ ${certifications.map(cert => `        <div class="resume-item d-flex flex-column
             <a href="${cert.credentialUrl}" target="_blank"
               rel="noopener">(See Credential)</a>
           </div>
-          <div class="resume-date text-md-right">
+          <div class="resume-date text-md-end">
             <span class="text-primary">${cert.period}</span>
           </div>
         </div>`).join('\n\n')}
