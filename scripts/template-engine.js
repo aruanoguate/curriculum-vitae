@@ -1,10 +1,17 @@
 const fs = require('fs-extra');
 
 class ResumeTemplateEngine {
-    constructor(dataPath) {
-        this.dataPath = dataPath;
-        this.data = null;
-    }
+  constructor(dataPath) {
+    this.dataPath = dataPath;
+    this.data = null;
+  }
+
+  // Helper method to get initials from full name
+  static getInitials(fullName) {
+    const nameParts = fullName.split(' ');
+    if (nameParts.length === 1) return nameParts[0].charAt(0).toUpperCase();
+    return nameParts[0].charAt(0).toUpperCase() + nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+  }
 
   // Basic HTML escaping for meta / text fields that should not render HTML
   static escape(html) {
@@ -17,30 +24,32 @@ class ResumeTemplateEngine {
       .replace(/'/g, '&#39;');
   }
 
-    async loadData() {
-        try {
-            const dataContent = await fs.readFile(this.dataPath, 'utf8');
-            this.data = JSON.parse(dataContent);
-            return this.data;
-        } catch (error) {
-            throw new Error(`Failed to load resume data: ${error.message}`);
-        }
+  async loadData() {
+    try {
+      const dataContent = await fs.readFile(this.dataPath, 'utf8');
+      this.data = JSON.parse(dataContent);
+      return this.data;
+    } catch (error) {
+      throw new Error(`Failed to load resume data: ${error.message}`);
+    }
+  }
+
+  generateWebsiteHTML() {
+    if (!this.data) {
+      throw new Error('Data not loaded. Call loadData() first.');
     }
 
-    generateWebsiteHTML() {
-        if (!this.data) {
-            throw new Error('Data not loaded. Call loadData() first.');
-        }
+    const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, meta } = this.data;
 
-  const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, meta } = this.data;
+    // Computed values for cleaner template
+    const initials = ResumeTemplateEngine.getInitials(personal.name);
+    const metaDescription = ResumeTemplateEngine.escape(meta.description);
+    const metaKeywords = ResumeTemplateEngine.escape(meta.keywords);
+    const metaAuthor = ResumeTemplateEngine.escape(meta.author);
+    const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
+    const googleAnalyticsId = meta.analytics?.googleAnalyticsId || '';
 
-  const metaDescription = ResumeTemplateEngine.escape(meta.description);
-  const metaKeywords = ResumeTemplateEngine.escape(meta.keywords);
-  const metaAuthor = ResumeTemplateEngine.escape(meta.author);
-  const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
-  const googleAnalyticsId = meta.analytics?.googleAnalyticsId || '';
-
-        return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -93,7 +102,7 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
       <!-- Mobile version - compact profile with name/initials -->
       <span class="d-lg-none d-flex align-items-center">
         <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
-        <span class="navbar-brand-text">${personal.name.split(' ').slice(0, 1)[0].charAt(0) + personal.name.split(' ').slice(-1)[0].charAt(0)}</span>
+        <span class="navbar-brand-text">${initials}</span>
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -129,9 +138,9 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
         <h2 class="mb-0 ">
-          ${personal.name.split(' ').map((name, index) => 
-            index === 1 ? `<span class="d-none d-sm-inline">${name}</span>` : name
-          ).join(' ')}
+          ${personal.name.split(' ').map((name, index) =>
+      index === 1 ? `<span class="d-none d-sm-inline">${name}</span>` : name
+    ).join(' ')}
         </h2>
         <br />
         <p class="lead mb-5">${summary.detailed}</p>
@@ -140,15 +149,15 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
         <div class="contact-section-primary mb-4">
           <ul class="fa-ul mb-0">
 ${contact.primary.map(link => {
-  const downloadAttr = link.download ? ` 
+      const downloadAttr = link.download ? ` 
             download="${link.download}" type="application/pdf"` : '';
-  return `            <li>
+      return `            <li>
           <i class="fa-li ${link.icon}" aria-hidden="true"></i>
           <a href="${link.url}" 
             target="_blank" 
             rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
          </li>`;
-}).join('\n')}
+    }).join('\n')}
           </ul>
         </div>
 
@@ -259,13 +268,19 @@ ${certifications.map(cert => `        <div class="resume-item d-flex flex-column
         <h2 class="mb-5">Collaborations</h2>
   <p class="lead mb-5">I've been mentioned as collaborator on the below open source projects:</p>
         <ul class="fa-ul mb-0">
-${collaborations.map(collab => `          <li>
+${collaborations.map(collab => {
+      const versionLinks = collab.versions && collab.versions.length > 0
+        ? collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted">${version.version}</a>`).join(', ')
+        : '';
+
+      return `          <li>
             <i class="fa-li fa fa-check"></i>
             <a href="${collab.url}" target="_blank"
               rel="noopener">${collab.name}</a>: ${collab.role}
-            ${collab.versions && collab.versions.length > 0 ? `
-            <br><small class="text-muted mt-1 d-block">Versions: ${collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted">${version.version}</a>`).join(', ')}</small>` : ''}
-          </li>`).join('\n')}
+            ${versionLinks ? `
+            <br><small class="text-muted mt-1 d-block">Versions: ${versionLinks}</small>` : ''}
+          </li>`;
+    }).join('\n')}
         </ul>
       </div>
     </section>
@@ -310,16 +325,16 @@ ${social.map(link => `                <a href="${link.url}" target="_blank" rel=
 </body>
 
 </html>`;
+  }
+
+  generatePDFHTML() {
+    if (!this.data) {
+      throw new Error('Data not loaded. Call loadData() first.');
     }
 
-    generatePDFHTML() {
-        if (!this.data) {
-            throw new Error('Data not loaded. Call loadData() first.');
-        }
+    const { personal, summary, skills, experience, education, certifications, collaborations, languages } = this.data;
 
-        const { personal, summary, skills, experience, education, certifications, collaborations, languages } = this.data;
-
-        return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -659,28 +674,28 @@ ${collaborations.map(collab => `            <li><strong>${collab.name}</strong> 
 </body>
 
 </html>`;
-    }
+  }
 
-    async generateWebsite(outputPath) {
-        const html = this.generateWebsiteHTML();
-        await fs.writeFile(outputPath, html, 'utf8');
-        console.log(`✅ Website generated: ${outputPath}`);
-    }
+  async generateWebsite(outputPath) {
+    const html = this.generateWebsiteHTML();
+    await fs.writeFile(outputPath, html, 'utf8');
+    console.log(`✅ Website generated: ${outputPath}`);
+  }
 
-    async generatePDFTemplate(outputPath) {
-        const html = this.generatePDFHTML();
-        await fs.writeFile(outputPath, html, 'utf8');
-        console.log(`✅ PDF template generated: ${outputPath}`);
-    }
+  async generatePDFTemplate(outputPath) {
+    const html = this.generatePDFHTML();
+    await fs.writeFile(outputPath, html, 'utf8');
+    console.log(`✅ PDF template generated: ${outputPath}`);
+  }
 
-    async generateAll(websitePath, pdfTemplatePath) {
-        await this.loadData();
-        await Promise.all([
-            this.generateWebsite(websitePath),
-            this.generatePDFTemplate(pdfTemplatePath)
-        ]);
-        console.log('🎉 All templates generated successfully!');
-    }
+  async generateAll(websitePath, pdfTemplatePath) {
+    await this.loadData();
+    await Promise.all([
+      this.generateWebsite(websitePath),
+      this.generatePDFTemplate(pdfTemplatePath)
+    ]);
+    console.log('🎉 All templates generated successfully!');
+  }
 }
 
 module.exports = ResumeTemplateEngine;

@@ -8,9 +8,9 @@
         "build": "gulp buildSite",
         "build-pdf": "node scripts/generate-pdf.js",
         "dev": "gulp serve",
-        "lint": "eslint scripts/**/*.js gulpfile.js js/resume.js",
-        "lint:fix": "eslint scripts/**/*.js gulpfile.js js/resume.js --fix",
-        "lint:ci": "eslint scripts/**/*.js gulpfile.js js/resume.js --max-warnings=0",
+        "lint": "eslint scripts/**/*.js gulpfile.js",
+        "lint:fix": "eslint scripts/**/*.js gulpfile.js --fix",
+        "lint:ci": "eslint scripts/**/*.js gulpfile.js --max-warnings=0",
         "format": "prettier . --write",
         "format:check": "prettier . --check",
         "audit": "npm audit || true"

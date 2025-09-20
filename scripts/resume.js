@@ -4,11 +4,11 @@
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
+      const target = $(this.hash);
+      const fallbackTarget = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (fallbackTarget.length) {
         $('html, body').animate({
-          scrollTop: (target.offset().top)
+          scrollTop: (fallbackTarget.offset().top)
         }, 400, "easeInOutExpo");
         return false;
       }
@@ -22,7 +22,8 @@
 
   // Activate scrollspy to add active class to navbar items on scroll
   // https://getbootstrap.com/docs/5.0/components/scrollspy/#methods
-  var _scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  // eslint-disable-next-line no-unused-vars
+  const _scrollSpy = new bootstrap.ScrollSpy(document.body, {
     target: '#sideNav'
   })
 
