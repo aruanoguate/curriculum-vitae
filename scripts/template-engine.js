@@ -38,19 +38,20 @@ class ResumeTemplateEngine {
   const metaKeywords = ResumeTemplateEngine.escape(meta.keywords);
   const metaAuthor = ResumeTemplateEngine.escape(meta.author);
   const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
+  const googleAnalyticsId = meta.analytics?.googleAnalyticsId || '';
 
         return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MENRKMGQ3M"></script>
+${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag(...args){dataLayer.push(...args);} 
     gtag('js', new Date());
-    gtag('config', 'G-MENRKMGQ3M');
-  </script>
+    gtag('config', '${googleAnalyticsId}');
+  </script>` : ''}
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
