@@ -72,122 +72,55 @@
       "company": "Relish",
       "companyUrl": "https://relishiq.com/",
       "period": "January 2022 – Present",
-      "startDate": "2022-01",
-      "endDate": null,
-      "current": true,
-      "description": "Lead the technical organization including software development, DevOps, architecture, and quality assurance for a cloud-based, multi-tenant SaaS platform supporting enterprise procurement and spend management workflows.",
-      "detailedDescription": "As Director of Engineering at RelishIQ, I lead the company's technical organization, which includes software development, DevOps, architecture, and quality assurance. I report directly to the CTO and have also served as interim VP of Technology, reporting to the CEO during that period. My role sits at the intersection of technology, product, and strategy, where I focus not only on execution, but on ensuring that everything we build is grounded in real business need.<br><br>Our cloud-based, multi-tenant SaaS platform supports enterprise procurement and spend management workflows. My job is to ensure that the technology behind it is not only secure, scalable, and maintainable—but also purposeful. I work closely with our architects and engineering leads to define system design patterns, quality standards, and implementation strategies that align with the outcomes our business and customers care about.<br><br>Beyond engineering execution, I partner with vendors, cloud providers, and internal stakeholders to optimize how we operate. This includes leading initiatives around cloud cost control, performance optimization, and usage efficiency across both AWS and Azure environments. I pay close attention to the ROI of our cloud investments, helping the company balance innovation with operational discipline.<br><br>Throughout my tenure, I've overseen the growth and maturing of several departments, including software engineering, QA (both manual and automation), and DevOps. I've helped define our architectural vision, drive adoption of modern development and testing practices, and mentor team leads and engineers at all levels. I also continue to collaborate with other functions—such as InfoSec and Support—to share knowledge, ensure continuity, and strengthen cross-functional alignment.",
-      "achievements": [
-        "Report directly to CTO and served as interim VP of Technology (February 2024 – December 2024) reporting to CEO",
-        "Define system design patterns, quality standards, and implementation strategies aligned with business outcomes",
-        "Partner with vendors and cloud providers to optimize operations across AWS and Azure environments",
-        "Lead cloud cost control, performance optimization, and usage efficiency initiatives with focus on ROI",
-        "Oversee growth and maturation of software engineering, QA (manual and automation), and DevOps departments",
-        "Mentor team leads and engineers at all levels while collaborating with InfoSec and Support functions"
-      ]
+      "detailedDescription": "As Director of Engineering at RelishIQ, I lead the company's technical organization, which includes software development, DevOps, architecture, and quality assurance. I report directly to the CTO and have also served as interim VP of Technology, reporting to the CEO during that period. My role sits at the intersection of technology, product, and strategy, where I focus not only on execution, but on ensuring that everything we build is grounded in real business need.<br><br>Our cloud-based, multi-tenant SaaS platform supports enterprise procurement and spend management workflows. My job is to ensure that the technology behind it is not only secure, scalable, and maintainable—but also purposeful. I work closely with our architects and engineering leads to define system design patterns, quality standards, and implementation strategies that align with the outcomes our business and customers care about.<br><br>Beyond engineering execution, I partner with vendors, cloud providers, and internal stakeholders to optimize how we operate. This includes leading initiatives around cloud cost control, performance optimization, and usage efficiency across both AWS and Azure environments. I pay close attention to the ROI of our cloud investments, helping the company balance innovation with operational discipline.<br><br>Throughout my tenure, I've overseen the growth and maturing of several departments, including software engineering, QA (both manual and automation), and DevOps. I've helped define our architectural vision, drive adoption of modern development and testing practices, and mentor team leads and engineers at all levels. I also continue to collaborate with other functions—such as InfoSec and Support—to share knowledge, ensure continuity, and strengthen cross-functional alignment."
     },
     {
       "title": "Interim VP of Engineering",
       "company": "Relish",
       "companyUrl": "https://relishiq.com/",
       "period": "February 2024 – December 2024",
-      "startDate": "2024-02",
-      "endDate": "2024-12",
-      "current": false,
-      "description": "Served as interim VP of Engineering, reporting directly to the CEO during an 11-month period while maintaining my Director of Engineering responsibilities. This dual role involved strategic technology leadership at the executive level while continuing to oversee day-to-day engineering operations.",
-      "detailedDescription": "Served as interim VP of Engineering, reporting directly to the CEO during an 11-month period while maintaining my Director of Engineering responsibilities. This dual role involved strategic technology leadership at the executive level while continuing to oversee day-to-day engineering operations.",
-      "achievements": []
+      "detailedDescription": "Served as interim VP of Engineering, reporting directly to the CEO during an 11-month period while maintaining my Director of Engineering responsibilities. This dual role involved strategic technology leadership at the executive level while continuing to oversee day-to-day engineering operations."
     },
     {
       "title": "Software Engineering Manager",
       "company": "Conduent",
       "companyUrl": "https://www.conduent.com/",
       "period": "February 2017 – January 2022",
-      "startDate": "2017-02",
-      "endDate": "2022-01",
-      "current": false,
-      "description": "Provided leadership and supervision to a team of 14 developers and QA specialists supporting proprietary Workers Compensation Bill Review system.",
-      "detailedDescription": "As Software Engineering Manager, I provided leadership and supervision to a robust team of 14 developers and quality assurance specialists. Our mission was to support our proprietary Workers Compensation Bill Review system. My team's responsibilities spanned several key areas:<br><br>• Development and management of data ingestion and extraction applications, handling formats such as XML, ANSI X12, PDF, and TIFF images<br>• Development of a SaaS platform, encompassing both maintenance of a legacy .NET Web Form application and creation of a new Angular-based cloud-native application hosted on Azure App Services<br>• Management of the reporting platform, which involved the use of Crystal Reports, the SAP Business Objects BI platform, and a SQL Server Data Warehouse<br>• Oversight of compliance systems to ensure regulatory adherence<br><br>Beyond team leadership, I was instrumental in advocating for and implementing SDLC best practices and coding standards across all teams. I also took a leading role in steering the ongoing migration to the Microsoft Azure platform.",
-      "achievements": [
-        "Managed development of data ingestion and extraction applications handling XML, ANSI X12, PDF, and TIFF formats",
-        "Led development of SaaS platform including legacy .NET Web Forms maintenance and new Angular cloud-native application on Azure",
-        "Oversaw reporting platform using Crystal Reports, SAP Business Objects BI, and SQL Server Data Warehouse",
-        "Implemented SDLC best practices and coding standards across all teams",
-        "Spearheaded migration to Microsoft Azure platform"
-      ]
+      "detailedDescription": "As Software Engineering Manager, I provided leadership and supervision to a robust team of 14 developers and quality assurance specialists. Our mission was to support our proprietary Workers Compensation Bill Review system. My team's responsibilities spanned several key areas:<br><br>• Development and management of data ingestion and extraction applications, handling formats such as XML, ANSI X12, PDF, and TIFF images<br>• Development of a SaaS platform, encompassing both maintenance of a legacy .NET Web Form application and creation of a new Angular-based cloud-native application hosted on Azure App Services<br>• Management of the reporting platform, which involved the use of Crystal Reports, the SAP Business Objects BI platform, and a SQL Server Data Warehouse<br>• Oversight of compliance systems to ensure regulatory adherence<br><br>Beyond team leadership, I was instrumental in advocating for and implementing SDLC best practices and coding standards across all teams. I also took a leading role in steering the ongoing migration to the Microsoft Azure platform."
     },
     {
       "title": "Business Analyst",
       "company": "Conduent",
       "companyUrl": "https://www.conduent.com/",
       "period": "April 2015 – February 2017",
-      "startDate": "2015-04",
-      "endDate": "2017-02",
-      "current": false,
-      "description": "Ensured smooth operation of compliance reporting platforms for various state governments across the USA by managing technological and human resources while interpreting business requirements.",
-      "detailedDescription": "I was responsible for ensuring the smooth operation of the platforms used to report compliance information to various state governments across the USA. This was achieved by effectively managing both technological and human resources, while also accurately interpreting business requirements.<br><br>A critical part of my role involved maintaining constant communication with the compliance department, acting as a liaison between compliance and the software developers. Serving as a technical product owner, I defined the requirements for applications built using .NET Framework and SQL Server. My collaborative approach ensured that all aspects of our operation were understood and considered in our software development process, enhancing the functionality and efficiency of our compliance reporting systems.",
-      "achievements": [
-        "Maintained communication between compliance department and software developers as technical product owner",
-        "Defined requirements for applications built using .NET Framework and SQL Server",
-        "Enhanced functionality and efficiency of compliance reporting systems"
-      ]
+      "detailedDescription": "I was responsible for ensuring the smooth operation of the platforms used to report compliance information to various state governments across the USA. This was achieved by effectively managing both technological and human resources, while also accurately interpreting business requirements.<br><br>A critical part of my role involved maintaining constant communication with the compliance department, acting as a liaison between compliance and the software developers. Serving as a technical product owner, I defined the requirements for applications built using .NET Framework and SQL Server. My collaborative approach ensured that all aspects of our operation were understood and considered in our software development process, enhancing the functionality and efficiency of our compliance reporting systems."
     },
     {
       "title": "Senior Software Developer",
       "company": "Banco Agromercantil de Guatemala",
       "companyUrl": "https://www.bam.com.gt/",
       "period": "August 2011 – March 2015",
-      "startDate": "2011-08",
-      "endDate": "2015-03",
-      "current": false,
-      "description": "Led critical software development projects and managed a team of six developers for internal bank software development initiatives.",
-      "detailedDescription": "My journey at Banco Agromercantil began as a Junior Developer and evolved into an influential role where I helmed critical software development projects. My leadership extended to directing a significant portion of the bank's internal software development projects and overseeing a talented team of six software developers.<br><br>My responsibilities were diverse, spanning from project requirement gathering to software design and development, along with meticulous planning using tools like Microsoft Project. A fundamental part of my role involved regular coordination with business stakeholders, which enabled us to establish implementation approaches, set cutover dates, and manage migration activities. I worked closely with the Software Architect, ensuring that our software development efforts were in line with accepted architectural practices.<br><br>Upon the launch of each project, my focus shifted to comprehensive production support, involving monitoring project progress and providing transparent status updates to IT management.<br><br>The projects I led were diverse and included the migration of an outdated Cobol-based system to the .NET Framework and creating new modules within the COBIS core banking engine. We further expanded our scope to third-party collaborations, integrating various service providers into our e-Banking application, which enriched the customers' banking experience.<br><br>One of the team's notable achievements under my guidance was the development of ETL processes feeding the Business Objects BI platform, enhancing our data-driven decision-making capabilities. We also designed an in-house ticketing system for our ISO 20,000 certified organization, tailored to our unique corporate needs.<br><br>Throughout my tenure, I strived to deliver high-quality software products that significantly contributed to Banco Agromercantil's operational efficiency and technological advancement.",
-      "achievements": [
-        "Directed migration of legacy Cobol-based system to .NET Framework",
-        "Created new modules within COBIS core banking engine",
-        "Integrated third-party service providers into e-Banking application",
-        "Developed ETL processes for Business Objects BI platform",
-        "Designed in-house ticketing system for ISO 20,000 certified organization",
-        "Managed project requirements gathering, software design, and production support"
-      ]
+      "detailedDescription": "My journey at Banco Agromercantil began as a Junior Developer and evolved into an influential role where I helmed critical software development projects. My leadership extended to directing a significant portion of the bank's internal software development projects and overseeing a talented team of six software developers.<br><br>My responsibilities were diverse, spanning from project requirement gathering to software design and development, along with meticulous planning using tools like Microsoft Project. A fundamental part of my role involved regular coordination with business stakeholders, which enabled us to establish implementation approaches, set cutover dates, and manage migration activities. I worked closely with the Software Architect, ensuring that our software development efforts were in line with accepted architectural practices.<br><br>Upon the launch of each project, my focus shifted to comprehensive production support, involving monitoring project progress and providing transparent status updates to IT management.<br><br>The projects I led were diverse and included the migration of an outdated Cobol-based system to the .NET Framework and creating new modules within the COBIS core banking engine. We further expanded our scope to third-party collaborations, integrating various service providers into our e-Banking application, which enriched the customers' banking experience.<br><br>One of the team's notable achievements under my guidance was the development of ETL processes feeding the Business Objects BI platform, enhancing our data-driven decision-making capabilities. We also designed an in-house ticketing system for our ISO 20,000 certified organization, tailored to our unique corporate needs.<br><br>Throughout my tenure, I strived to deliver high-quality software products that significantly contributed to Banco Agromercantil's operational efficiency and technological advancement."
     },
     {
       "title": "Junior Software Developer",
       "company": "Citi",
       "companyUrl": "https://www.citigroup.com/citi/",
       "period": "March 2011 – August 2011",
-      "startDate": "2011-03",
-      "endDate": "2011-08",
-      "current": false,
-      "description": "Designed and developed new features for e-Banking systems across Central America following secure software development practices.",
-      "detailedDescription": "As a Software Developer at Citi, I was part of the design and development of new features for e-Banking systems across Central America. I was responsible for executing each phase of the Software Development Lifecycle (SDLC), ensuring that we met the established deadlines and requirements.<br><br>I primarily worked with SQL Server, .NET Framework, C#, and ASP.NET Web Forms, building the application following an n-layer architecture. My work was always subject to rigorous secure software development practices to maintain the high standard of security that's needed in banking applications.",
-      "achievements": [
-        "Executed full Software Development Lifecycle (SDLC) phases",
-        "Worked with SQL Server, .NET Framework, C#, and ASP.NET Web Forms",
-        "Built applications following n-layer architecture with rigorous security standards"
-      ]
+      "detailedDescription": "As a Software Developer at Citi, I was part of the design and development of new features for e-Banking systems across Central America. I was responsible for executing each phase of the Software Development Lifecycle (SDLC), ensuring that we met the established deadlines and requirements.<br><br>I primarily worked with SQL Server, .NET Framework, C#, and ASP.NET Web Forms, building the application following an n-layer architecture. My work was always subject to rigorous secure software development practices to maintain the high standard of security that's needed in banking applications."
     }
   ],
   "education": [
     {
       "degree": "Master of Business Administration",
       "institution": "ENAE Business School",
-      "period": "2015 - n/a",
-      "startDate": "2015",
-      "endDate": null,
-      "current": true,
-      "description": "",
-      "achievements": []
+      "period": "2015 - n/a"
     },
     {
       "degree": "Master of Finance",
       "institution": "Universidad Rafael Landívar",
       "period": "2013 - 2015",
-      "startDate": "2013",
-      "endDate": "2015",
-      "current": false,
       "credentialUrl": "docs/mfin-diploma.jpg",
-      "description": "",
       "achievements": [
         "Academic Excellence Diploma"
       ]
@@ -196,11 +129,7 @@
       "degree": "Information Systems Engineering",
       "institution": "Universidad Rafael Landívar",
       "period": "2008 - 2013",
-      "startDate": "2008",
-      "endDate": "2013",
-      "current": false,
       "credentialUrl": "docs/engineer-diploma.jpg",
-      "description": "",
       "achievements": [
         "Magna Cum Laude",
         "Excellence in Values Award 2012 - Asociación de Estudiantes de Ingeniería (AEI)"
@@ -212,37 +141,25 @@
       "name": "Microsoft Certified: Azure Developer Associate",
       "issuer": "Microsoft",
       "period": "March 2021 - March 2023",
-      "startDate": "2021-03",
-      "endDate": "2023-03",
-      "credentialUrl": "https://www.youracclaim.com/badges/7d40a49c-0e11-4e36-85aa-63219f203747",
-      "current": false
+      "credentialUrl": "https://www.youracclaim.com/badges/7d40a49c-0e11-4e36-85aa-63219f203747"
     },
     {
       "name": "Microsoft Certified: Azure Data Fundamentals",
       "issuer": "Microsoft",
       "period": "May 2021",
-      "startDate": "2021-05",
-      "endDate": null,
-      "credentialUrl": "https://www.credly.com/badges/4e01edf8-6d04-4590-be50-8922aea1cb8a",
-      "current": true
+      "credentialUrl": "https://www.credly.com/badges/4e01edf8-6d04-4590-be50-8922aea1cb8a"
     },
     {
       "name": "Microsoft Certified: Azure Fundamentals",
       "issuer": "Microsoft",
       "period": "November 2020",
-      "startDate": "2020-11",
-      "endDate": null,
-      "credentialUrl": "https://www.youracclaim.com/badges/337c066f-71ef-4e0a-9d5e-4aa2811cca6a",
-      "current": true
+      "credentialUrl": "https://www.youracclaim.com/badges/337c066f-71ef-4e0a-9d5e-4aa2811cca6a"
     },
     {
       "name": "Duolingo English Test",
       "issuer": "Duolingo",
       "period": "February 2020 - February 2022",
-      "startDate": "2020-02",
-      "endDate": "2022-02",
-      "credentialUrl": "https://certs.duolingo.com/rjxgs8t5",
-      "current": false
+      "credentialUrl": "https://certs.duolingo.com/rjxgs8t5"
     }
   ],
   "skills": {

@@ -544,10 +544,7 @@ ${experience.map(job => `        <div class="resume-item">
                 </div>
                 <span class="date-range">${job.period}</span>
             </div>
-            <p>${job.description}</p>
-            ${job.achievements && job.achievements.length > 0 ? `<ul>
-${job.achievements.map(achievement => `                <li>${achievement}</li>`).join('\n')}
-            </ul>` : ''}
+            <p>${job.detailedDescription}</p>
         </div>`).join('\n\n')}
     </section>
 
