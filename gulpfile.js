@@ -24,16 +24,16 @@ function clean() {
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
   // Bootstrap
-  var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
+  const bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
     .pipe(gulp.dest('./vendor/bootstrap'));
   // Font Awesome
-  var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
+  const fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
     .pipe(gulp.dest('./vendor'));
   // jQuery Easing
-  var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
+  const jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
     .pipe(gulp.dest('./vendor/jquery-easing'));
   // jQuery
-  var jquery = gulp.src([
+  const jquery = gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
@@ -170,6 +170,7 @@ const serve = gulp.series(buildSite, browserSyncServe, watchFiles);
 exports.css = css;
 exports.js = js;
 exports.clean = clean;
+exports.modules = modules;
 exports.vendor = vendor;
 exports.build = build;
 exports.pdf = generatePDF;

@@ -24,6 +24,62 @@ class ResumeTemplateEngine {
       .replace(/'/g, '&#39;');
   }
 
+  // Helper method to generate contact links HTML
+  static generateContactLinks(links, role = 'listitem') {
+    return links.map(link => {
+      const downloadAttr = link.download ? ` 
+            download="${link.download}" type="application/pdf"` : '';
+      return `            <li role="${role}">
+          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
+          <a href="${link.url}" 
+            target="_blank" 
+            rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
+         </li>`;
+    }).join('\n');
+  }
+
+  // Helper method to generate experience items HTML
+  static generateExperienceItems(experience) {
+    return experience.map((job, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="job-${index}">
+          <div class="resume-content">
+            <h3 id="job-${index}" class="mb-0">${job.title}</h3>
+            <div class="subheading mb-3"><a href="${job.companyUrl}" target="_blank" rel="noopener" aria-label="Visit ${job.company} website">${job.company}</a></div>
+            <div class="resume-date-mobile d-md-none">
+              <span class="text-primary" aria-label="Employment period">${job.period}</span>
+            </div>
+            <p>${job.detailedDescription}</p>
+          </div>
+          <div class="resume-date text-md-end d-none d-md-block">
+            <span class="text-primary" aria-label="Employment period">${job.period}</span>
+          </div>
+        </article>`).join('\n\n');
+  }
+
+  // Helper method to generate education items HTML
+  static generateEducationItems(education) {
+    return education.map((edu, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="edu-${index}">
+          <div class="resume-content">
+            <h3 id="edu-${index}" class="mb-0">${edu.institution}</h3>
+            <div class="mb-3">
+              <div class="subheading">${edu.degree}</div>
+              ${edu.credentialUrl ? `<a href="${edu.credentialUrl}" target="_blank" rel="noopener" aria-label="View credential for ${edu.degree}">(See Credential)</a>` : ''}
+            </div>
+            <div class="resume-date-mobile d-md-none">
+              <span class="text-primary" aria-label="Study period">${edu.period}</span>
+            </div>
+            ${edu.achievements && edu.achievements.length > 0 ? `<ul class="fa-ul mb-0" role="list" aria-label="Achievements">
+${edu.achievements.map(achievement => `              <li role="listitem">
+                <i class="fa-li fa fa-trophy text-warning" aria-hidden="true"></i>
+                ${achievement}
+              </li>`).join('\n')}
+            </ul>` : ''}
+          </div>
+          <div class="resume-date text-md-end d-none d-md-block">
+            <span class="text-primary" aria-label="Study period">${edu.period}</span>
+          </div>
+        </article>`).join('\n\n');
+  }
+
   async loadData() {
     try {
       const dataContent = await fs.readFile(this.dataPath, 'utf8');
@@ -48,6 +104,13 @@ class ResumeTemplateEngine {
     const metaAuthor = ResumeTemplateEngine.escape(meta.author);
     const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
     const googleAnalyticsId = meta.analytics?.googleAnalyticsId || '';
+
+    // Generate sections using helper methods
+    const primaryContactLinks = ResumeTemplateEngine.generateContactLinks(contact.primary);
+    const contactInfoLinks = ResumeTemplateEngine.generateContactLinks(contact.contact);
+    const additionalLinks = ResumeTemplateEngine.generateContactLinks(contact.links);
+    const experienceItems = ResumeTemplateEngine.generateExperienceItems(experience);
+    const educationItems = ResumeTemplateEngine.generateEducationItems(education);
 
         return `<!DOCTYPE html>
 <html lang="en">
@@ -141,10 +204,8 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about" aria-labelledby="about-heading">
       <div class="w-100">
-        <h1 id="about-heading" class="mb-0">
-          ${personal.name.split(' ').map((name, index) =>
-      index === 1 ? `<span class="d-none d-sm-inline text-primary">${name}</span>` : name
-    ).join(' ')}
+        <h1 id="about-heading" class="mb-0 text-primary">
+          ${personal.name}
         </h1>
         <br />
         <p class="lead mb-5">${summary.detailed}</p>
@@ -152,40 +213,21 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
         <!-- Primary Links: LinkedIn & Resume -->
         <div class="contact-section-primary mb-4" role="group" aria-label="Primary professional links">
           <ul class="fa-ul mb-0" role="list">
-${contact.primary.map(link => {
-      const downloadAttr = link.download ? ` 
-            download="${link.download}" type="application/pdf"` : '';
-      return `            <li role="listitem">
-          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
-          <a href="${link.url}" 
-            target="_blank" 
-            rel="noopener"${downloadAttr} aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
-         </li>`;
-    }).join('\n')}
+${primaryContactLinks}
           </ul>
         </div>
 
         <!-- Contact Information: Phone & Email -->
         <div class="contact-section-info mb-4" role="group" aria-label="Contact information">
           <ul class="fa-ul mb-0" role="list">
-${contact.contact.map(link => `            <li role="listitem">
-          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
-          <a href="${link.url}" 
-            target="_blank" 
-            rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
-         </li>`).join('\n')}
+${contactInfoLinks}
           </ul>
         </div>
 
         <!-- Additional Links: GitHub, SlideShare, etc. -->
         <div class="contact-section-links" role="group" aria-label="Additional professional links">
           <ul class="fa-ul mb-0" role="list">
-${contact.links.map(link => `            <li role="listitem">
-          <i class="fa-li ${link.icon}" aria-hidden="true"></i>
-          <a href="${link.url}" 
-            target="_blank" 
-            rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.text)}">${link.text}</a>
-         </li>`).join('\n')}
+${additionalLinks}
           </ul>
         </div>
       </div>
@@ -197,19 +239,7 @@ ${contact.links.map(link => `            <li role="listitem">
       <div class="w-100">
         <h2 id="experience-heading" class="mb-5">Experience</h2>
 
-${experience.map((job, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="job-${index}">
-          <div class="resume-content">
-            <h3 id="job-${index}" class="mb-0">${job.title}</h3>
-            <div class="subheading mb-3"><a href="${job.companyUrl}" target="_blank" rel="noopener" aria-label="Visit ${job.company} website">${job.company}</a></div>
-            <div class="resume-date-mobile d-md-none">
-              <span class="text-primary" aria-label="Employment period">${job.period}</span>
-            </div>
-            <p>${job.detailedDescription}</p>
-          </div>
-          <div class="resume-date text-md-end d-none d-md-block">
-            <span class="text-primary" aria-label="Employment period">${job.period}</span>
-          </div>
-        </article>`).join('\n\n')}
+${experienceItems}
 
       </div>
     </section>
@@ -220,27 +250,7 @@ ${experience.map((job, index) => `        <article class="resume-item d-flex fle
       <div class="w-100">
         <h2 id="education-heading" class="mb-5">Education</h2>
 
-${education.map((edu, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="edu-${index}">
-          <div class="resume-content">
-            <h3 id="edu-${index}" class="mb-0">${edu.institution}</h3>
-            <div class="mb-3">
-              <div class="subheading">${edu.degree}</div>
-              ${edu.credentialUrl ? `<a href="${edu.credentialUrl}" target="_blank" rel="noopener" aria-label="View credential for ${edu.degree}">(See Credential)</a>` : ''}
-            </div>
-            <div class="resume-date-mobile d-md-none">
-              <span class="text-primary" aria-label="Study period">${edu.period}</span>
-            </div>
-            ${edu.achievements && edu.achievements.length > 0 ? `<ul class="fa-ul mb-0" role="list" aria-label="Achievements">
-${edu.achievements.map(achievement => `              <li role="listitem">
-                <i class="fa-li fa fa-trophy text-warning" aria-hidden="true"></i>
-                ${achievement}
-              </li>`).join('\n')}
-            </ul>` : ''}
-          </div>
-          <div class="resume-date text-md-end d-none d-md-block">
-            <span class="text-primary" aria-label="Study period">${edu.period}</span>
-          </div>
-        </article>`).join('\n\n')}
+${educationItems}
 
       </div>
     </section>

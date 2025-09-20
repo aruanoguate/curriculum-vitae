@@ -3,7 +3,7 @@
 
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
       const target = $(this.hash);
       const fallbackTarget = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       if (fallbackTarget.length) {
@@ -35,9 +35,13 @@
 
   // Activate scrollspy to add active class to navbar items on scroll
   // https://getbootstrap.com/docs/5.0/components/scrollspy/#methods
-  // eslint-disable-next-line no-unused-vars
-  const _scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  const scrollSpy = new bootstrap.ScrollSpy(document.body, {
     target: '#sideNav'
-  })
+  });
+
+  // Export for potential testing or debugging
+  window.ResumeApp = {
+    scrollSpy: scrollSpy
+  };
 
 })(jQuery); // End of use strict
