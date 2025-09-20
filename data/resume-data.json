@@ -1,12 +1,9 @@
 {
   "personal": {
     "name": "Alvaro Enrique Ruano",
-    "shortName": "Alvaro Ruano",
-    "title": "Director of Engineering",
     "location": "Guatemala City, Guatemala",
     "phone": "(+502) 5930-2117",
     "email": "alvaro.ruano90@outlook.com",
-    "website": "https://alvaroruano.me",
     "linkedin": "https://www.linkedin.com/in/aruanoguate",
     "github": "https://github.com/aruanoguate",
     "profileImage": "img/profile.jpg",
@@ -289,7 +286,6 @@
     "keywords": "alvaro enrique ruano, alvaro ruano, aruanoguate, opportuno tech, ticket genial, software engineer, software engineering manager, technology director, azure certified, azure developer, cloud expert, cloud certified",
     "author": "Alvaro Enrique Ruano",
     "canonical": "https://alvaroruano.me",
-    "lastUpdated": "2025-09-16",
     "analytics": {
       "googleAnalyticsId": "G-MENRKMGQ3M"
     }

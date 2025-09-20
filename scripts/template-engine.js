@@ -263,6 +263,8 @@ ${collaborations.map(collab => `          <li>
             <i class="fa-li fa fa-check"></i>
             <a href="${collab.url}" target="_blank"
               rel="noopener">${collab.name}</a>: ${collab.role}
+            ${collab.versions && collab.versions.length > 0 ? `
+            <br><small class="text-muted mt-1 d-block">Versions: ${collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted">${version.version}</a>`).join(', ')}</small>` : ''}
           </li>`).join('\n')}
         </ul>
       </div>
