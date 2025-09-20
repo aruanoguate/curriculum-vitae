@@ -1,0 +1,229 @@
+@use "variables" as *;
+
+// Mobile-specific responsive improvements
+
+// Section spacing improvements for mobile
+.resume-section {
+  @media (max-width: 575px) {
+    padding: 2rem 1rem !important;
+    
+    // Ensure text doesn't touch edges
+    .w-100 {
+      padding: 0 0.5rem;
+    }
+  }
+  
+  @media (min-width: 576px) and (max-width: 767px) {
+    padding: 2.5rem 1.5rem !important;
+  }
+}
+
+// Navigation improvements for mobile
+@media (max-width: 991px) {
+  #sideNav {
+    .navbar-brand {
+      display: flex !important;
+      align-items: center;
+      
+      // Mobile profile styling
+      .img-profile-mobile {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .navbar-brand-text {
+        color: $white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        margin-left: 0.5rem;
+      }
+      
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 0.75rem; // Push profile content slightly to the right for better balance
+        
+        &.d-none.d-lg-block {
+          display: none !important;
+        }
+        
+        img {
+          margin: 0;
+        }
+      }
+    }
+    
+    .navbar-toggler {
+      // Ensure toggler is easily tappable
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0.5rem;
+      margin-left: auto; // Push to the right
+    }
+    
+    .navbar-collapse {
+      margin-top: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      
+      .navbar-nav {
+        .nav-item {
+          .nav-link {
+            padding: 0.75rem 1rem;
+            font-size: 1.1rem;
+            min-height: 44px; // Touch-friendly height
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Text and content improvements for mobile
+@media (max-width: 767px) {
+  // Improve paragraph spacing
+  p.lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  // Better spacing for lists
+  .fa-ul {
+    margin-left: 1.5rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      // Make links more touch-friendly
+      a {
+        padding: 0.25rem 0;
+        display: inline-block;
+        min-height: 44px; // Apple's recommended touch target size
+        line-height: 1.4;
+      }
+    }
+  }
+  
+  // Subheading improvements
+  .subheading {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    
+    a {
+      display: block;
+      padding: 0.5rem 0;
+      word-break: break-word; // Handle long URLs
+    }
+  }
+  
+  // Resume items spacing
+  .resume-item {
+    margin-bottom: 2rem;
+    
+    // On mobile, stack the content vertically
+    &.d-flex.flex-column.flex-md-row {
+      flex-direction: column !important;
+    }
+    
+    .resume-content {
+      h3 {
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+      
+      .subheading {
+        margin-bottom: 0.5rem !important;
+      }
+      
+      // Style the mobile date that appears after company/institution name
+      .resume-date-mobile {
+        margin-bottom: 1rem;
+        margin-top: 0.5rem;
+        
+        span {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: $primary !important;
+          display: block;
+          font-style: italic;
+          opacity: 0.9;
+        }
+      }
+      
+      p, ul {
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    // Hide the desktop date on mobile (it's handled by Bootstrap classes but adding for clarity)
+    .resume-date {
+      @media (max-width: 767px) {
+        display: none !important;
+      }
+    }
+  }
+  
+  // Improve button and link touch targets
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  // Better spacing for certification links
+  section a[href*="credential"] {
+    display: inline-block;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+}
+
+// Ultra-small screens (phones in portrait)
+@media (max-width: 480px) {
+  .resume-section {
+    padding: 1.5rem 0.75rem !important;
+  }
+  
+  // Even smaller headings for very small screens
+  h1 {
+    font-size: 2.5rem !important;
+    line-height: 2.3rem !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  // Ensure navigation doesn't take too much space
+  body {
+    padding-top: 60px !important;
+  }
+}
+
+// Landscape orientation on mobile
+@media (max-width: 767px) and (orientation: landscape) {
+  .resume-section {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  // Reduce header sizes for landscape
+  h1 {
+    font-size: 2.8rem !important;
+    line-height: 2.6rem !important;
+  }
+  
+  h2 {
+    font-size: 2.2rem !important;
+  }
+}

@@ -9,6 +9,14 @@ body {
   padding-top: 54px;
   color: $gray-600;
 }
+
+// Mobile-specific adjustments
+@media (max-width: 575px) {
+  body {
+    padding-top: 56px; // Slightly more space for mobile navigation
+  }
+}
+
 @media (min-width: 992px) {
   body {
     padding-top: 0;
@@ -31,6 +39,44 @@ h6 {
 h1 {
   font-size: 6rem;
   line-height: 5.5rem;
+}
+
+// Mobile responsive typography
+@media (max-width: 575px) {
+  h1 {
+    font-size: 3rem;
+    line-height: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  h1 {
+    font-size: 4rem;
+    line-height: 3.8rem;
+  }
+  
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  h1 {
+    font-size: 5rem;
+    line-height: 4.8rem;
+  }
+  
+  h2 {
+    font-size: 3.2rem;
+  }
 }
 
 h2 {
@@ -69,6 +115,20 @@ p.lead {
     }
     &:hover {
       background-color: $primary;
+    }
+  }
+  
+  // Mobile improvements for touch targets
+  @media (max-width: 767px) {
+    text-align: center;
+    margin-top: 1rem;
+    
+    a {
+      height: 4rem;
+      width: 4rem;
+      font-size: 1.7rem;
+      line-height: 4rem;
+      margin: 0.5rem;
     }
   }
 }

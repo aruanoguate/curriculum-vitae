@@ -85,11 +85,17 @@ class ResumeTemplateEngine {
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <!-- Desktop version - full size profile image -->
       <span class="d-none d-lg-block">
-  <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
+      </span>
+      <!-- Mobile version - compact profile with name/initials -->
+      <span class="d-lg-none d-flex align-items-center">
+        <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
+        <span class="navbar-brand-text">${personal.name.split(' ').slice(0, 1)[0].charAt(0) + personal.name.split(' ').slice(-1)[0].charAt(0)}</span>
       </span>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -166,9 +172,12 @@ ${experience.map(job => `        <div class="resume-item d-flex flex-column flex
           <div class="resume-content">
             <h3 class="mb-0">${job.title}</h3>
             <div class="subheading mb-3"><a href="${job.companyUrl}" target="_blank" rel="noopener">${job.company}</a></div>
+            <div class="resume-date-mobile d-md-none">
+              <span class="text-primary">${job.period}</span>
+            </div>
             <p>${job.detailedDescription}</p>
           </div>
-          <div class="resume-date text-md-right">
+          <div class="resume-date text-md-right d-none d-md-block">
             <span class="text-primary">${job.period}</span>
           </div>
         </div>`).join('\n\n')}
@@ -189,6 +198,9 @@ ${education.map(edu => `        <div class="resume-item d-flex flex-column flex-
               <div class="subheading">${edu.degree}</div>
               ${edu.credentialUrl ? `<a href="${edu.credentialUrl}" target="_blank" rel="noopener">(See Credential)</a>` : ''}
             </div>
+            <div class="resume-date-mobile d-md-none">
+              <span class="text-primary">${edu.period}</span>
+            </div>
             ${edu.achievements && edu.achievements.length > 0 ? `<ul class="fa-ul mb-0">
 ${edu.achievements.map(achievement => `              <li>
                 <i class="fa-li fa fa-trophy text-warning"></i>
@@ -196,7 +208,7 @@ ${edu.achievements.map(achievement => `              <li>
               </li>`).join('\n')}
             </ul>` : ''}
           </div>
-          <div class="resume-date text-md-right">
+          <div class="resume-date text-md-right d-none d-md-block">
             <span class="text-primary">${edu.period}</span>
           </div>
         </div>`).join('\n\n')}
