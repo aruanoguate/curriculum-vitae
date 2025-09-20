@@ -1,0 +1,177 @@
+// Skip links for accessibility
+.skip-links {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1100; // Higher than Bootstrap navbar
+
+  .skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    color: #000;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 4px;
+    font-weight: bold;
+
+    &:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      left: auto;
+      top: auto;
+      z-index: 1200;
+    }
+  }
+}
+
+// Enhanced high contrast focus indicators
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.nav-link:focus,
+.navbar-brand:focus,
+.social-icon:focus {
+  outline: 3px solid #000 !important;
+  outline-offset: 2px !important;
+  background-color: #ffff00 !important; // High contrast yellow
+  color: #000 !important;
+  text-decoration: underline !important;
+}
+
+// Ensure links have sufficient contrast
+a {
+  color: #1a5490; // Darker blue for better contrast than default primary
+  
+  &:hover {
+    color: #0f3b6b; // Even darker on hover
+  }
+}
+
+// Social icons accessibility
+.social-icons a {
+  &:focus {
+    outline: 3px solid #fff !important;
+    outline-offset: 2px !important;
+    background-color: #000 !important;
+    transform: scale(1.1);
+  }
+}
+
+// Ensure sufficient contrast for text colors
+.text-primary {
+  color: #1a5490 !important; // Darker blue for better contrast
+}
+
+.text-muted {
+  color: #495057 !important; // Darker gray for better contrast (was #6c757d)
+}
+
+// Contact section link improvements
+.contact-section-primary,
+.contact-section-info,
+.contact-section-links {
+  .fa-ul li a {
+    color: #495057; // Darker gray for better contrast
+    
+    &:hover {
+      color: #1a5490; // Darker blue
+    }
+    
+    &:focus {
+      outline: 3px solid #000 !important;
+      outline-offset: 2px !important;
+      background-color: #ffff00 !important;
+      color: #000 !important;
+    }
+  }
+}
+
+// Screen reader only content
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Improved keyboard navigation for mobile toggle
+.navbar-toggler {
+  &:focus {
+    outline: 3px solid #fff !important;
+    outline-offset: 2px !important;
+    background-color: #000 !important;
+  }
+}
+
+// Ensure version links in collaborations have good contrast
+.text-muted a {
+  color: #495057 !important;
+  
+  &:hover {
+    color: #1a5490 !important;
+  }
+  
+  &:focus {
+    outline: 3px solid #000 !important;
+    outline-offset: 2px !important;
+    background-color: #ffff00 !important;
+    color: #000 !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  
+  .bg-primary {
+    background-color: #000 !important;
+  }
+  
+  .text-primary {
+    color: #000 !important;
+  }
+  
+  a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .social-icons a:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

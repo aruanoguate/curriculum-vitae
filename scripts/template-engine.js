@@ -49,7 +49,7 @@ class ResumeTemplateEngine {
     const metaCanonical = ResumeTemplateEngine.escape(meta.canonical);
     const googleAnalyticsId = meta.analytics?.googleAnalyticsId || '';
 
-    return `<!DOCTYPE html>
+        return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -70,9 +70,7 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
   <meta name="wot-verification" content="362806dc14a211a9e9bc" />
   <link rel="canonical" href="${metaCanonical}" />
 
-  <title>${personal.name}</title>
-
-  <!-- Favicons -->
+  <title>${personal.name} - Professional Resume</title>  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -92,66 +90,72 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
 </head>
 
 <body id="page-top">
+  
+  <!-- Skip Links for Accessibility -->
+  <div class="skip-links">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#sideNav" class="skip-link">Skip to navigation</a>
+  </div>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" role="navigation" aria-label="Main navigation">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top" aria-label="Go to top of page">
       <!-- Desktop version - full size profile image -->
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img">
       </span>
       <!-- Mobile version - compact profile with name/initials -->
       <span class="d-lg-none d-flex align-items-center">
-        <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Profile photo of ${ResumeTemplateEngine.escape(personal.name)}">
-        <span class="navbar-brand-text">${initials}</span>
+        <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img">
+        <span class="navbar-brand-text" aria-label="Initials: ${initials}">${initials}</span>
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation menu">
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+      <ul class="navbar-nav" role="menubar">
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#about" role="menuitem">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#experience" role="menuitem">Experience</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#education" role="menuitem">Education</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#certifications" role="menuitem">Certifications</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#collaborations">Collaborations</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#collaborations" role="menuitem">Collaborations</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link js-scroll-trigger" href="#interests" role="menuitem">Interests</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <div class="container-fluid p-0">
+  <main id="main-content" class="container-fluid p-0" role="main">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about" aria-labelledby="about-heading">
       <div class="w-100">
-        <h2 class="mb-0 ">
+        <h1 id="about-heading" class="mb-0">
           ${personal.name.split(' ').map((name, index) =>
-      index === 1 ? `<span class="d-none d-sm-inline">${name}</span>` : name
+      index === 1 ? `<span class="d-none d-sm-inline text-primary">${name}</span>` : name
     ).join(' ')}
-        </h2>
+        </h1>
         <br />
         <p class="lead mb-5">${summary.detailed}</p>
         
         <!-- Primary Links: LinkedIn & Resume -->
-        <div class="contact-section-primary mb-4">
-          <ul class="fa-ul mb-0">
+        <div class="contact-section-primary mb-4" role="group" aria-label="Primary professional links">
+          <ul class="fa-ul mb-0" role="list">
 ${contact.primary.map(link => {
       const downloadAttr = link.download ? ` 
             download="${link.download}" type="application/pdf"` : '';
-      return `            <li>
+      return `            <li role="listitem">
           <i class="fa-li ${link.icon}" aria-hidden="true"></i>
           <a href="${link.url}" 
             target="_blank" 
@@ -162,9 +166,9 @@ ${contact.primary.map(link => {
         </div>
 
         <!-- Contact Information: Phone & Email -->
-        <div class="contact-section-info mb-4">
-          <ul class="fa-ul mb-0">
-${contact.contact.map(link => `            <li>
+        <div class="contact-section-info mb-4" role="group" aria-label="Contact information">
+          <ul class="fa-ul mb-0" role="list">
+${contact.contact.map(link => `            <li role="listitem">
           <i class="fa-li ${link.icon}" aria-hidden="true"></i>
           <a href="${link.url}" 
             target="_blank" 
@@ -174,9 +178,9 @@ ${contact.contact.map(link => `            <li>
         </div>
 
         <!-- Additional Links: GitHub, SlideShare, etc. -->
-        <div class="contact-section-links">
-          <ul class="fa-ul mb-0">
-${contact.links.map(link => `            <li>
+        <div class="contact-section-links" role="group" aria-label="Additional professional links">
+          <ul class="fa-ul mb-0" role="list">
+${contact.links.map(link => `            <li role="listitem">
           <i class="fa-li ${link.icon}" aria-hidden="true"></i>
           <a href="${link.url}" 
             target="_blank" 
@@ -189,94 +193,94 @@ ${contact.links.map(link => `            <li>
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience" aria-labelledby="experience-heading">
       <div class="w-100">
-        <h2 class="mb-5">Experience</h2>
+        <h2 id="experience-heading" class="mb-5">Experience</h2>
 
-${experience.map(job => `        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+${experience.map((job, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="job-${index}">
           <div class="resume-content">
-            <h3 class="mb-0">${job.title}</h3>
-            <div class="subheading mb-3"><a href="${job.companyUrl}" target="_blank" rel="noopener">${job.company}</a></div>
+            <h3 id="job-${index}" class="mb-0">${job.title}</h3>
+            <div class="subheading mb-3"><a href="${job.companyUrl}" target="_blank" rel="noopener" aria-label="Visit ${job.company} website">${job.company}</a></div>
             <div class="resume-date-mobile d-md-none">
-              <span class="text-primary">${job.period}</span>
+              <span class="text-primary" aria-label="Employment period">${job.period}</span>
             </div>
             <p>${job.detailedDescription}</p>
           </div>
           <div class="resume-date text-md-end d-none d-md-block">
-            <span class="text-primary">${job.period}</span>
+            <span class="text-primary" aria-label="Employment period">${job.period}</span>
           </div>
-        </div>`).join('\n\n')}
+        </article>`).join('\n\n')}
 
       </div>
     </section>
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education" aria-labelledby="education-heading">
       <div class="w-100">
-        <h2 class="mb-5">Education</h2>
+        <h2 id="education-heading" class="mb-5">Education</h2>
 
-${education.map(edu => `        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+${education.map((edu, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="edu-${index}">
           <div class="resume-content">
-            <h3 class="mb-0">${edu.institution}</h3>
+            <h3 id="edu-${index}" class="mb-0">${edu.institution}</h3>
             <div class="mb-3">
               <div class="subheading">${edu.degree}</div>
-              ${edu.credentialUrl ? `<a href="${edu.credentialUrl}" target="_blank" rel="noopener">(See Credential)</a>` : ''}
+              ${edu.credentialUrl ? `<a href="${edu.credentialUrl}" target="_blank" rel="noopener" aria-label="View credential for ${edu.degree}">(See Credential)</a>` : ''}
             </div>
             <div class="resume-date-mobile d-md-none">
-              <span class="text-primary">${edu.period}</span>
+              <span class="text-primary" aria-label="Study period">${edu.period}</span>
             </div>
-            ${edu.achievements && edu.achievements.length > 0 ? `<ul class="fa-ul mb-0">
-${edu.achievements.map(achievement => `              <li>
-                <i class="fa-li fa fa-trophy text-warning"></i>
+            ${edu.achievements && edu.achievements.length > 0 ? `<ul class="fa-ul mb-0" role="list" aria-label="Achievements">
+${edu.achievements.map(achievement => `              <li role="listitem">
+                <i class="fa-li fa fa-trophy text-warning" aria-hidden="true"></i>
                 ${achievement}
               </li>`).join('\n')}
             </ul>` : ''}
           </div>
           <div class="resume-date text-md-end d-none d-md-block">
-            <span class="text-primary">${edu.period}</span>
+            <span class="text-primary" aria-label="Study period">${edu.period}</span>
           </div>
-        </div>`).join('\n\n')}
+        </article>`).join('\n\n')}
 
       </div>
     </section>
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="certifications">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="certifications" aria-labelledby="certifications-heading">
       <div class="w-100">
-        <h2 class="mb-5">Certifications</h2>
+        <h2 id="certifications-heading" class="mb-5">Certifications</h2>
 
-${certifications.map(cert => `        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+${certifications.map((cert, index) => `        <article class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" role="group" aria-labelledby="cert-${index}">
           <div class="resume-content">
-            <h3 class="mb-0">${cert.name}</h3>
+            <h3 id="cert-${index}" class="mb-0">${cert.name}</h3>
             <div class="subheading">${cert.issuer}</div>
             <a href="${cert.credentialUrl}" target="_blank"
-              rel="noopener">(See Credential)</a>
+              rel="noopener" aria-label="View credential for ${cert.name}">(See Credential)</a>
           </div>
           <div class="resume-date text-md-end">
-            <span class="text-primary">${cert.period}</span>
+            <span class="text-primary" aria-label="Certification period">${cert.period}</span>
           </div>
-        </div>`).join('\n\n')}
+        </article>`).join('\n\n')}
       </div>
     </section>
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="collaborations">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="collaborations" aria-labelledby="collaborations-heading">
       <div class="w-100">
-        <h2 class="mb-5">Collaborations</h2>
+        <h2 id="collaborations-heading" class="mb-5">Collaborations</h2>
   <p class="lead mb-5">I've been mentioned as collaborator on the below open source projects:</p>
-        <ul class="fa-ul mb-0">
+        <ul class="fa-ul mb-0" role="list" aria-label="Open source collaborations">
 ${collaborations.map(collab => {
       const versionLinks = collab.versions && collab.versions.length > 0
-        ? collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted">${version.version}</a>`).join(', ')
+        ? collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted" aria-label="Version ${version.version}">${version.version}</a>`).join(', ')
         : '';
 
-      return `          <li>
-            <i class="fa-li fa fa-check"></i>
+      return `          <li role="listitem">
+            <i class="fa-li fa fa-check" aria-hidden="true"></i>
             <a href="${collab.url}" target="_blank"
-              rel="noopener">${collab.name}</a>: ${collab.role}
+              rel="noopener" aria-label="Visit ${collab.name} project">${collab.name}</a>: ${collab.role}
             ${versionLinks ? `
             <br><small class="text-muted mt-1 d-block">Versions: ${versionLinks}</small>` : ''}
           </li>`;
@@ -287,9 +291,9 @@ ${collaborations.map(collab => {
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests" aria-labelledby="interests-heading">
       <div class="w-100">
-        <h2 class="mb-5">Interests</h2>
+        <h2 id="interests-heading" class="mb-5">Interests</h2>
         
         <!-- Summary and social icons layout -->
         <div class="row align-items-center">
@@ -298,11 +302,13 @@ ${collaborations.map(collab => {
           </div>
           
           <div class="col-12 col-lg-4 col-xl-5">
-            <div class="social-section text-center text-lg-end mt-3 mt-lg-0">
-              <div class="social-icons">
-${social.map(link => `                <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">
-                  <i class="${link.icon}" aria-hidden="true"></i>
-                </a>`).join('\n')}
+            <div class="social-section text-center text-lg-end mt-3 mt-lg-0" role="group" aria-label="Social media profiles">
+              <div class="social-icons" role="list">
+${social.map(link => `                <div role="listitem">
+                  <a href="${link.url}" target="_blank" rel="noopener" aria-label="${ResumeTemplateEngine.escape(link.platform)} profile link">
+                    <i class="${link.icon}" aria-hidden="true"></i>
+                  </a>
+                </div>`).join('\n')}
               </div>
             </div>
           </div>
@@ -310,7 +316,7 @@ ${social.map(link => `                <a href="${link.url}" target="_blank" rel=
       </div>
     </section>
 
-  </div>
+  </main>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
