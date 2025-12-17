@@ -37,6 +37,7 @@
         "jquery.easing": "^1.4.1"
     },
     "devDependencies": {
+        "baseline-browser-mapping": "^2.9.9",
         "braces": "^3.0.3",
         "browser-sync": "^3.0.4",
         "del": "^6.1.1",
