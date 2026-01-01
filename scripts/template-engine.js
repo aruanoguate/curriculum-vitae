@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs-extra');
 
 class ResumeTemplateEngine {
@@ -99,6 +101,8 @@ ${edu.achievements.map(achievement => `              <li role="listitem">
 
     // Computed values for cleaner template
     const initials = ResumeTemplateEngine.getInitials(personal.name);
+    const escapedName = ResumeTemplateEngine.escape(personal.name);
+    const professionalTitle = `${escapedName} - ${ResumeTemplateEngine.escape(experience[0].title)} & Cloud Architect`;
     const metaDescription = ResumeTemplateEngine.escape(meta.description);
     const metaKeywords = ResumeTemplateEngine.escape(meta.keywords);
     const metaAuthor = ResumeTemplateEngine.escape(meta.author);
@@ -134,7 +138,7 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
   <link rel="canonical" href="${metaCanonical}" />
 
   <!-- Open Graph Meta Tags for Social Sharing -->
-  <meta property="og:title" content="${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect" />
+  <meta property="og:title" content="${professionalTitle}" />
   <meta property="og:description" content="${metaDescription}" />
   <meta property="og:image" content="${metaCanonical}/${personal.profileImage}" />
   <meta property="og:url" content="${metaCanonical}" />
@@ -145,11 +149,11 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect" />
+  <meta name="twitter:title" content="${professionalTitle}" />
   <meta name="twitter:description" content="${metaDescription}" />
   <meta name="twitter:image" content="${metaCanonical}/${personal.profileImage}" />
 
-  <title>${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect</title>
+  <title>${professionalTitle}</title>
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -431,7 +435,7 @@ ${social.map(link => `                <div role="listitem">
     <title>${personal.name} - Resume</title>
     <style>
         /* ATS-Optimized PDF Styles */
-  // Resume PDF link dynamically uses personal.resumePdf path (generated)
+        /* Resume PDF link dynamically uses personal.resumePdf path (generated) */
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
             font-size: 10pt;
@@ -784,7 +788,8 @@ ${collaborations.map(collab => `            <li><strong>${collab.name}</strong> 
     const { personal, summary, experience } = this.data;
 
     // Extract years of experience from summary (e.g., "15+ years")
-    const yearsMatch = summary.detailed.match(/(\d+)\+?\s*years/i);
+    // Using possessive-style pattern to prevent ReDoS backtracking
+    const yearsMatch = summary.detailed.match(/(\d+)\+? ?years/i);
     const yearsExp = yearsMatch ? `${yearsMatch[1]}+` : '15+';
 
     const manifest = {

@@ -9,12 +9,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
@@ -22,52 +16,81 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build and deploy job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Build job - separate from deploy for better security isolation
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # Only needs to read repository contents
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+        with:
+          persist-credentials: false  # Don't persist credentials for security
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
-          
+
+      - name: Verify package-lock.json integrity
+        run: npm ci --ignore-scripts  # First install without scripts to verify integrity
+
       - name: Install dependencies
+        # Note: Running without --ignore-scripts is intentional here.
+        # After verifying package-lock integrity above, we need lifecycle scripts
+        # to run for packages like puppeteer that require post-install setup.
+        # This is a conscious security trade-off documented for SonarQube S6505.
         run: npm ci
-        
+
+      - name: Run security audit
+        run: npm audit --audit-level=high
+        continue-on-error: true  # Don't fail build but report issues
+
       - name: Build complete website with PDF
         run: npm run build
-        
-      - name: List generated files for debugging
+
+      - name: Verify build output
         run: |
-          echo "Generated files in dist/ directory:"
-          ls -la dist/ || echo "No dist directory found"
-          echo "Generated website files:"
-          ls -la dist/index.html dist/resume-template.html || echo "No HTML files found"
-          echo "Generated PDF:"
-          ls -la dist/docs/AlvaroRuano_Resume.pdf || echo "No PDF found"
-          echo "Generated CSS files:"
-          ls -la dist/css/ || echo "No CSS files found"
-          echo "Generated JS files:"
-          ls -la dist/js/ || echo "No JS files found"
-          echo "Vendor libraries:"
-          ls -la dist/vendor/ || echo "No vendor files found"
-        
+          # Verify essential files exist
+          test -f dist/index.html || exit 1
+          test -f dist/site.webmanifest || exit 1
+          test -d dist/css || exit 1
+          test -d dist/js || exit 1
+          echo "✅ Build verification passed"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: './dist'
+          retention-days: 1
+
+  # Deploy job - runs only after successful build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write     # Needed to deploy to GitHub Pages
+      id-token: write  # Needed for OIDC token for Pages deployment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: './dist'
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        
-      - name: Upload artifact
+
+      - name: Upload artifact to Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the generated dist directory
           path: './dist'
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

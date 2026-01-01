@@ -1,3 +1,5 @@
+'use strict';
+
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
 const path = require('path');
