@@ -12,6 +12,7 @@ async function buildResume() {
     const distDir = path.join(__dirname, '..', 'dist');
     const websitePath = path.join(distDir, 'index.html');
     const pdfTemplatePath = path.join(distDir, 'resume-template.html');
+    const manifestPath = path.join(distDir, 'site.webmanifest');
     const generatedPdfDir = path.join(distDir, 'generated-pdf');
         
         // Ensure dist directory exists
@@ -25,12 +26,14 @@ async function buildResume() {
     const staticDirs = ['css'];
         const staticFiles = [
             'android-chrome-192x192.png',
-            'android-chrome-512x512.png', 
+            'android-chrome-512x512.png',
             'apple-touch-icon.png',
             'favicon-16x16.png',
             'favicon-32x32.png',
             'favicon.ico',
-            'site.webmanifest'
+            'sitemap.xml',
+            'robots.txt'
+            // Note: site.webmanifest is now generated from resume data
         ];
         
         // Copy directories
@@ -88,9 +91,9 @@ async function buildResume() {
         const templateEngine = new ResumeTemplateEngine(dataPath);
         await templateEngine.loadData();
         
-        // Generate both templates
+        // Generate all templates (website, PDF, manifest)
         console.log('🔧 Generating templates from unified data source...');
-        await templateEngine.generateAll(websitePath, pdfTemplatePath);
+        await templateEngine.generateAll(websitePath, pdfTemplatePath, manifestPath);
         
     // Ensure generated-pdf directory exists
     await fs.ensureDir(generatedPdfDir);

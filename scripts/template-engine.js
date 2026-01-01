@@ -95,7 +95,7 @@ ${edu.achievements.map(achievement => `              <li role="listitem">
       throw new Error('Data not loaded. Call loadData() first.');
     }
 
-    const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, meta } = this.data;
+    const { personal, summary, contact, experience, education, certifications, collaborations, interests, social, skills, meta } = this.data;
 
     // Computed values for cleaner template
     const initials = ResumeTemplateEngine.getInitials(personal.name);
@@ -133,22 +133,94 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
   <meta name="wot-verification" content="362806dc14a211a9e9bc" />
   <link rel="canonical" href="${metaCanonical}" />
 
-  <title>${personal.name} - Professional Resume</title>  <!-- Favicons -->
+  <!-- Open Graph Meta Tags for Social Sharing -->
+  <meta property="og:title" content="${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect" />
+  <meta property="og:description" content="${metaDescription}" />
+  <meta property="og:image" content="${metaCanonical}/${personal.profileImage}" />
+  <meta property="og:url" content="${metaCanonical}" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="${ResumeTemplateEngine.escape(personal.name)} - Professional Resume" />
+  <meta property="profile:first_name" content="${ResumeTemplateEngine.escape(personal.name.split(' ')[0])}" />
+  <meta property="profile:last_name" content="${ResumeTemplateEngine.escape(personal.name.split(' ').slice(-1)[0])}" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect" />
+  <meta name="twitter:description" content="${metaDescription}" />
+  <meta name="twitter:image" content="${metaCanonical}/${personal.profileImage}" />
+
+  <title>${ResumeTemplateEngine.escape(personal.name)} - Director of Engineering & Cloud Architect</title>
+
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <!-- Preconnect to external resources for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=Muli:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/resume.min.css" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "${ResumeTemplateEngine.escape(personal.name)}",
+    "url": "${metaCanonical}",
+    "image": "${metaCanonical}/${personal.profileImage}",
+    "jobTitle": "${ResumeTemplateEngine.escape(experience[0].title)}",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "${ResumeTemplateEngine.escape(experience[0].company)}",
+      "url": "${experience[0].companyUrl}"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Guatemala City",
+      "addressCountry": "Guatemala"
+    },
+    "email": "${personal.email}",
+    "telephone": "${personal.phone}",
+    "sameAs": [
+      "${personal.linkedin}",
+      "${personal.github}",
+      "${social.map(s => s.url).join('",\n      "')}"
+    ],
+    "knowsAbout": [
+      ${skills.leadership.map(s => `"${ResumeTemplateEngine.escape(s)}"`).join(',\n      ')},
+      ${skills.technical.map(s => `"${ResumeTemplateEngine.escape(s)}"`).join(',\n      ')}
+    ],
+    "alumniOf": [
+      ${education.map(edu => `{
+        "@type": "EducationalOrganization",
+        "name": "${ResumeTemplateEngine.escape(edu.institution)}"
+      }`).join(',\n      ')}
+    ],
+    "hasCredential": [
+      ${certifications.map(cert => `{
+        "@type": "EducationalOccupationalCredential",
+        "name": "${ResumeTemplateEngine.escape(cert.name)}",
+        "credentialCategory": "certification",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "${ResumeTemplateEngine.escape(cert.issuer)}"
+        }
+      }`).join(',\n      ')}
+    ]
+  }
+  </script>
 
 </head>
 
@@ -704,12 +776,61 @@ ${collaborations.map(collab => `            <li><strong>${collab.name}</strong> 
     console.log(`✅ PDF template generated: ${outputPath}`);
   }
 
-  async generateAll(websitePath, pdfTemplatePath) {
+  generateWebManifest() {
+    if (!this.data) {
+      throw new Error('Data not loaded. Call loadData() first.');
+    }
+
+    const { personal, summary, experience } = this.data;
+
+    // Extract years of experience from summary (e.g., "15+ years")
+    const yearsMatch = summary.detailed.match(/(\d+)\+?\s*years/i);
+    const yearsExp = yearsMatch ? `${yearsMatch[1]}+` : '15+';
+
+    const manifest = {
+      name: `${personal.name.split(' ')[0]} ${personal.name.split(' ').slice(-1)[0]} - ${experience[0].title} & Cloud Architect`,
+      short_name: `${personal.name.split(' ')[0]} ${personal.name.split(' ').slice(-1)[0]}`,
+      description: `Professional resume of ${personal.name} - Technology Director with ${yearsExp} years of experience in software engineering, cloud architecture, and engineering leadership.`,
+      start_url: '/',
+      scope: '/',
+      icons: [
+        {
+          src: '/android-chrome-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        },
+        {
+          src: '/android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        }
+      ],
+      theme_color: '#2E86AB',
+      background_color: '#ffffff',
+      display: 'standalone',
+      categories: ['business', 'productivity'],
+      lang: 'en'
+    };
+
+    return JSON.stringify(manifest, null, 2);
+  }
+
+  async generateWebManifestFile(outputPath) {
+    const manifest = this.generateWebManifest();
+    await fs.writeFile(outputPath, manifest, 'utf8');
+    console.log(`✅ Web manifest generated: ${outputPath}`);
+  }
+
+  async generateAll(websitePath, pdfTemplatePath, manifestPath) {
     await this.loadData();
-    await Promise.all([
+    const tasks = [
       this.generateWebsite(websitePath),
       this.generatePDFTemplate(pdfTemplatePath)
-    ]);
+    ];
+    if (manifestPath) {
+      tasks.push(this.generateWebManifestFile(manifestPath));
+    }
+    await Promise.all(tasks);
     console.log('🎉 All templates generated successfully!');
   }
 }

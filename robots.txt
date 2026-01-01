@@ -1,0 +1,6 @@
+# robots.txt for alvaroruano.me
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://alvaroruano.me/sitemap.xml
