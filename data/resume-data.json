@@ -168,6 +168,22 @@
   },
   "collaborations": [
     {
+      "name": "JSON TreeSize",
+      "role": "creator of the VS Code extension",
+      "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize",
+      "description": "VS Code extension that visualizes JSON file size by path — interactive tree explorer with size bars, heat-map coloring, and one-click navigation. Published on the VS Code Marketplace with 100% test coverage, 20-language localization, and automated CI/CD.",
+      "references": [
+        {
+          "reference": "GitHub",
+          "url": "https://github.com/aruanoguate/json-treesize"
+        },
+        {
+          "reference": "Marketplace",
+          "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize"
+        }
+      ]
+    },
+    {
       "name": "gitflow-in-azure-devops",
       "role": "creator of the utility",
       "url": "https://github.com/aruanoguate/gitflow-in-azure-devops",
@@ -183,22 +199,22 @@
       "name": "Pretix",
       "role": "collaborator",
       "url": "https://github.com/pretix/pretix",
-      "description": "Collaborator on ticketing platform versions",
-      "versions": [
+      "description": "Collaborator on ticketing platform release references",
+      "references": [
         {
-          "version": "v2.30",
+          "reference": "v2.30",
           "url": "https://pretix.eu/about/en/blog/20181206-release-230/"
         },
         {
-          "version": "v2.40",
+          "reference": "v2.40",
           "url": "https://pretix.eu/about/en/blog/20190204-release-240/"
         },
         {
-          "version": "v2.50",
+          "reference": "v2.50",
           "url": "https://pretix.eu/about/en/blog/20190311-release-250/"
         },
         {
-          "version": "v2.60",
+          "reference": "v2.60",
           "url": "https://pretix.eu/about/en/blog/20190403-release-260/"
         }
       ]
@@ -207,34 +223,34 @@
       "name": "Visual Studio Code",
       "role": "translator",
       "url": "https://github.com/microsoft/vscode",
-      "description": "Spanish translator for multiple versions",
-      "versions": [
+      "description": "Spanish translator for multiple release references",
+      "references": [
         {
-          "version": "v1.31",
+          "reference": "v1.31",
           "url": "https://code.visualstudio.com/updates/v1_31"
         },
         {
-          "version": "v1.32",
+          "reference": "v1.32",
           "url": "https://code.visualstudio.com/updates/v1_32"
         },
         {
-          "version": "v1.33",
+          "reference": "v1.33",
           "url": "https://code.visualstudio.com/updates/v1_33"
         },
         {
-          "version": "v1.34",
+          "reference": "v1.34",
           "url": "https://code.visualstudio.com/updates/v1_34"
         },
         {
-          "version": "v1.37",
+          "reference": "v1.37",
           "url": "https://code.visualstudio.com/updates/v1_37"
         },
         {
-          "version": "v1.38",
+          "reference": "v1.38",
           "url": "https://code.visualstudio.com/updates/v1_38"
         },
         {
-          "version": "v1.43",
+          "reference": "v1.43",
           "url": "https://code.visualstudio.com/updates/v1_43"
         }
       ]

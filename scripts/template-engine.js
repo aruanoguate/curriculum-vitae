@@ -359,16 +359,16 @@ ${certifications.map((cert, index) => `        <article class="resume-item d-fle
   <p class="lead mb-5">I've been mentioned as collaborator on the below open source projects:</p>
         <ul class="fa-ul mb-0" role="list" aria-label="Open source collaborations">
 ${collaborations.map(collab => {
-      const versionLinks = collab.versions && collab.versions.length > 0
-        ? collab.versions.map(version => `<a href="${version.url}" target="_blank" rel="noopener" class="text-muted" aria-label="Version ${version.version}">${version.version}</a>`).join(', ')
+      const referenceLinks = collab.references && collab.references.length > 0
+        ? collab.references.map(reference => `<a href="${reference.url}" target="_blank" rel="noopener" class="text-muted" aria-label="Reference ${reference.reference}">${reference.reference}</a>`).join(', ')
         : '';
 
       return `          <li role="listitem">
             <i class="fa-li fa fa-check" aria-hidden="true"></i>
             <a href="${collab.url}" target="_blank"
               rel="noopener" aria-label="Visit ${collab.name} project">${collab.name}</a>: ${collab.role}
-            ${versionLinks ? `
-            <br><small class="text-muted mt-1 d-block">Versions: ${versionLinks}</small>` : ''}
+            ${referenceLinks ? `
+            <br><small class="text-muted mt-1 d-block">References: ${referenceLinks}</small>` : ''}
           </li>`;
     }).join('\n')}
         </ul>
