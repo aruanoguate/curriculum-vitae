@@ -11,8 +11,8 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass")(require('sass-embedded'));
 const uglify = require("gulp-uglify");
 const browserSync = require("browser-sync").create();
-const { exec } = require('child_process');
-const { promisify } = require('util');
+const { exec } = require('node:child_process');
+const { promisify } = require('node:util');
 
 const execAsync = promisify(exec);
 

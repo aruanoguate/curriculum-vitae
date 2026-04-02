@@ -40,7 +40,7 @@
   });
 
   // Export for potential testing or debugging
-  window.ResumeApp = {
+  globalThis.ResumeApp = {
     scrollSpy: scrollSpy
   };
 

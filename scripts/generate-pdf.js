@@ -2,7 +2,7 @@
 
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 const ResumeTemplateEngine = require('./template-engine');
 
 async function generateResumePDF(templatePath = null, outputPath = null) {
