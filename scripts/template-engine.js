@@ -19,11 +19,11 @@ class ResumeTemplateEngine {
   static escape(html) {
     if (typeof html !== 'string') return html;
     return html
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
   }
 
   // Helper method to generate contact links HTML
@@ -787,10 +787,24 @@ ${collaborations.map(collab => `            <li><strong>${collab.name}</strong> 
 
     const { personal, summary, experience } = this.data;
 
-    // Extract years of experience from summary (e.g., "15+ years")
-    // Using possessive-style pattern to prevent ReDoS backtracking
-    const yearsMatch = summary.detailed.match(/(\d+)\+? ?years/i);
-    const yearsExp = yearsMatch ? `${yearsMatch[1]}+` : '15+';
+    // Extract years of experience from summary (e.g., "15+ years") without regex backtracking risk.
+    const summaryText = String(summary.detailed || '');
+    const yearsIndex = summaryText.toLowerCase().indexOf('years');
+    let yearsExp = '15+';
+
+    if (yearsIndex > 0) {
+      let cursor = yearsIndex - 1;
+      while (cursor >= 0 && summaryText[cursor] === ' ') cursor -= 1;
+      if (cursor >= 0 && summaryText[cursor] === '+') cursor -= 1;
+
+      const end = cursor;
+      while (cursor >= 0 && summaryText[cursor] >= '0' && summaryText[cursor] <= '9') cursor -= 1;
+
+      const digits = summaryText.slice(cursor + 1, end + 1);
+      if (digits.length > 0) {
+        yearsExp = `${digits}+`;
+      }
+    }
 
     const manifest = {
       name: `${personal.name.split(' ')[0]} ${personal.name.split(' ').slice(-1)[0]} - ${experience[0].title} & Cloud Architect`,
