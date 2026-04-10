@@ -363,10 +363,16 @@ ${collaborations.map(collab => {
         ? collab.references.map(reference => `<a href="${reference.url}" target="_blank" rel="noopener" class="text-muted" aria-label="Reference ${reference.reference}">${reference.reference}</a>`).join(', ')
         : '';
 
+      const versionLinks = collab.versions && collab.versions.length > 0
+        ? collab.versions.map(v => `<a href="${v.url}" target="_blank" rel="noopener" class="text-muted" aria-label="${ResumeTemplateEngine.escape(v.version)} link">${v.version}</a>`).join(' &middot; ')
+        : '';
+
       return `          <li role="listitem">
             <i class="fa-li fa fa-check" aria-hidden="true"></i>
             <a href="${collab.url}" target="_blank"
               rel="noopener" aria-label="Visit ${collab.name} project">${collab.name}</a>: ${collab.role}
+            ${versionLinks ? `
+            <br><small class="text-muted mt-1 d-block">${versionLinks}</small>` : ''}
             ${referenceLinks ? `
             <br><small class="text-muted mt-1 d-block">References: ${referenceLinks}</small>` : ''}
           </li>`;

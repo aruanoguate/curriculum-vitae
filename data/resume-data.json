@@ -168,18 +168,42 @@
   },
   "collaborations": [
     {
-      "name": "JSON TreeSize",
+      "name": "JSON Tree Size",
       "role": "creator of the VS Code extension",
       "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize",
-      "description": "VS Code extension that visualizes JSON file size by path — interactive tree explorer with size bars, heat-map coloring, and one-click navigation. Published on the VS Code Marketplace with 100% test coverage, 20-language localization, and automated CI/CD.",
-      "references": [
+      "description": "VS Code extension that visualizes JSON file size by path - interactive tree explorer with size bars, heat-map coloring, and one-click navigation.",
+      "versions": [
         {
-          "reference": "GitHub",
-          "url": "https://github.com/aruanoguate/json-treesize"
+          "version": "GitHub Repo",
+          "url": "https://github.com/aruanoguate/file-tree-size"
         },
         {
-          "reference": "Marketplace",
+          "version": "Marketplace",
           "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize"
+        },
+        {
+          "version": "Open VSX",
+          "url": "https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize"
+        }
+      ]
+    },
+    {
+      "name": "XML Tree Size",
+      "role": "creator of the VS Code extension",
+      "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size",
+      "description": "VS Code extension that visualizes XML and SOAP payload sizes by element, attribute, text, and CDATA in an interactive tree.",
+      "versions": [
+        {
+          "version": "GitHub Repo",
+          "url": "https://github.com/aruanoguate/file-tree-size"
+        },
+        {
+          "version": "Marketplace",
+          "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size"
+        },
+        {
+          "version": "Open VSX",
+          "url": "https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size"
         }
       ]
     },
@@ -199,22 +223,22 @@
       "name": "Pretix",
       "role": "collaborator",
       "url": "https://github.com/pretix/pretix",
-      "description": "Collaborator on ticketing platform release references",
-      "references": [
+      "description": "Collaborator on ticketing platform versions",
+      "versions": [
         {
-          "reference": "v2.30",
+          "version": "v2.30",
           "url": "https://pretix.eu/about/en/blog/20181206-release-230/"
         },
         {
-          "reference": "v2.40",
+          "version": "v2.40",
           "url": "https://pretix.eu/about/en/blog/20190204-release-240/"
         },
         {
-          "reference": "v2.50",
+          "version": "v2.50",
           "url": "https://pretix.eu/about/en/blog/20190311-release-250/"
         },
         {
-          "reference": "v2.60",
+          "version": "v2.60",
           "url": "https://pretix.eu/about/en/blog/20190403-release-260/"
         }
       ]
@@ -223,34 +247,34 @@
       "name": "Visual Studio Code",
       "role": "translator",
       "url": "https://github.com/microsoft/vscode",
-      "description": "Spanish translator for multiple release references",
-      "references": [
+      "description": "Spanish translator for multiple versions",
+      "versions": [
         {
-          "reference": "v1.31",
+          "version": "v1.31",
           "url": "https://code.visualstudio.com/updates/v1_31"
         },
         {
-          "reference": "v1.32",
+          "version": "v1.32",
           "url": "https://code.visualstudio.com/updates/v1_32"
         },
         {
-          "reference": "v1.33",
+          "version": "v1.33",
           "url": "https://code.visualstudio.com/updates/v1_33"
         },
         {
-          "reference": "v1.34",
+          "version": "v1.34",
           "url": "https://code.visualstudio.com/updates/v1_34"
         },
         {
-          "reference": "v1.37",
+          "version": "v1.37",
           "url": "https://code.visualstudio.com/updates/v1_37"
         },
         {
-          "reference": "v1.38",
+          "version": "v1.38",
           "url": "https://code.visualstudio.com/updates/v1_38"
         },
         {
-          "reference": "v1.43",
+          "version": "v1.43",
           "url": "https://code.visualstudio.com/updates/v1_43"
         }
       ]
