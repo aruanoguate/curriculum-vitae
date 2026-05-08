@@ -10,7 +10,7 @@
     "resumePdf": "generated-pdf/AlvaroRuano_Resume.pdf"
   },
   "summary": {
-    "detailed": "Hands-on Technology Director with 15+ years of leadership experience across software engineering, architecture, DevOps, and QA operations. Proven track record of scaling engineering teams from startup to enterprise, delivering cloud-native SaaS platforms, and aligning technology strategy with business objectives in fast-paced B2B environments.<br><br>Expert in driving technical excellence while mentoring cross-functional teams, optimizing development pipelines, and designing scalable processes that support growth and operational stability. Passionate about cloud infrastructure, modern development practices, and emerging technologies including IoT and AI.<br><br>Skilled at bridging engineering and business domains—experienced in budget management, release planning, vendor integration, and stakeholder alignment. Seeking technology leadership roles or consulting opportunities where strategic vision and technical depth create measurable impact."
+    "detailed": "Technology Director with 15+ years leading engineering organizations across enterprise SaaS, regulated industries, and banking. Engineering degree, Master of Finance, and MBA — a combination that bridges technical depth with financial rigor and business strategy.<br><br>Proven record scaling cloud-native platforms on AWS and Azure, directing teams from startup to enterprise scale, and representing technology at the C-suite level. Experienced in multi-tenant B2B SaaS architecture, DevOps transformation, and engineering budget ownership.<br><br>Core technical expertise in C#/.NET, TypeScript/Angular, cloud infrastructure (AWS/Azure), CI/CD automation, and enterprise data platforms.<br><br>Dual-language executive (Spanish — native; English — proficient) with operational experience spanning Latin America and North America.<br><br>Available for Director of Engineering, VP of Engineering, or senior technology consulting engagements."
   },
   "contact": {
     "primary": [
@@ -67,35 +67,28 @@
       "company": "Relish",
       "companyUrl": "https://relishiq.com/",
       "period": "January 2022 – Present",
-      "detailedDescription": "Lead technology strategy and execution for RelishIQ's enterprise procurement SaaS platform, overseeing software engineering, DevOps, architecture, and QA functions. Report directly to the CTO while bridging technology decisions with business objectives across a fast-growing B2B environment. Additionally served as interim VP of Engineering (February 2024 – December 2024), reporting directly to the CEO during a critical 11-month growth period and representing engineering interests in C-level strategic discussions.<br><br>Scale and mentor engineering teams through strategic growth phases, establishing architectural standards and development practices that support both current operations and future expansion. Drive cloud-native platform development using modern frameworks, ensuring security, scalability, and maintainability in our multi-tenant AWS and Azure environments.<br><br>Champion operational excellence by implementing cost optimization strategies, performance monitoring, and infrastructure automation that directly impact bottom-line results. Partner with vendors, cloud providers, and cross-functional stakeholders to negotiate technical solutions that balance innovation with business needs.<br><br>Foster a culture of technical excellence through hands-on mentorship, establishing quality standards, and promoting best practices across software engineering, automated testing, and CI/CD pipelines. Collaborate closely with InfoSec, Support, and Product teams to ensure technology decisions align with business strategy and customer success objectives."
+      "detailedDescription": "Lead technology strategy and execution for a multi-tenant enterprise procurement SaaS platform, overseeing software engineering, DevOps, architecture, and QA. Report to the CTO; also served as interim VP of Engineering (February – December 2024), reporting directly to the CEO during a critical growth period.<br><br><ul><li>Scaled engineering organization through critical growth phases; established architectural standards and development practices for multi-tenant SaaS expansion</li><li>Drove cloud infrastructure cost optimization with direct impact on operational margins</li><li>Implemented CI/CD pipelines, automated testing frameworks, and observability practices across cloud environments</li><li>Managed vendor relationships, engineering budget, and cross-functional alignment with Product, InfoSec, and Customer Support</li></ul><strong>Technical Environment:</strong> Multi-tenant SaaS architecture, cloud infrastructure, JavaScript/TypeScript, CI/CD, automated testing, observability, vendor integrations"
     },
     {
       "title": "Software Engineering Manager",
       "company": "Conduent",
       "companyUrl": "https://www.conduent.com/",
       "period": "February 2017 – January 2022",
-      "detailedDescription": "Built and led a high-performing engineering team of 14 developers and QA specialists supporting a mission-critical Workers Compensation SaaS platform. Established the leadership foundation that shaped my current approach to scaling teams and delivering enterprise software solutions.<br><br>Championed modern development practices by implementing SDLC standards, CI/CD pipelines, and coding best practices across multiple teams. Led the strategic migration from legacy .NET Web Forms to cloud-native Angular applications on Azure, while establishing infrastructure-as-code practices that drive my current platform strategies.<br><br>Managed diverse technical portfolios including data ingestion pipelines (XML, ANSI X12, PDF processing), business intelligence platforms (Crystal Reports, SAP Business Objects), and regulatory compliance systems. Implemented DevOps practices that significantly reduced deployment times and improved system reliability across all platform components.<br><br>Served as technical liaison between engineering and business stakeholders, translating complex compliance requirements into actionable development roadmaps. This role developed my skills in stakeholder management and business-technology alignment that are central to my current executive approach."
+      "detailedDescription": "Led a team of 14 developers and QA specialists on a mission-critical Workers Compensation SaaS platform, with full accountability for delivery, quality, and team performance.<br><br><ul><li>Directed strategic migration from legacy .NET Web Forms to cloud-native Angular applications on Azure</li><li>Implemented SDLC standards, CI/CD pipelines, and DevOps practices that reduced deployment cycle times across all platform components</li><li>Managed data ingestion pipelines (XML, ANSI X12, PDF), BI reporting (Crystal Reports, SAP Business Objects), and multi-state regulatory compliance systems</li><li>Served as technical liaison translating complex compliance requirements into actionable engineering roadmaps for business stakeholders</li></ul><strong>Technical Environment:</strong> .NET Framework, .NET Core, Angular, Azure DevOps, C#, SQL Server, ANSI X12, Crystal Reports, SAP Business Objects"
     },
     {
       "title": "Business Analyst",
       "company": "Conduent",
       "companyUrl": "https://www.conduent.com/",
       "period": "April 2015 – February 2017",
-      "detailedDescription": "Served as the critical bridge between technical teams and business stakeholders for Workers Compensation SaaS platforms used for state government compliance reporting across the USA. This role cultivated my ability to translate complex business requirements into technical solutions—a skill that remains fundamental to my current leadership approach.<br><br>Operated as technical product owner, defining requirements for .NET Framework applications and SQL Server solutions while ensuring regulatory compliance across multiple state jurisdictions. The Workers Compensation domain required deep understanding of insurance regulations, medical billing processes, and state-specific compliance requirements.<br><br>Managed both technological and human resources to ensure smooth platform operations, establishing early experience in resource allocation and cross-functional coordination. This foundational experience in balancing technical excellence with strict regulatory business objectives directly influences my current philosophy of technology leadership."
+      "detailedDescription": "Technical bridge between engineering teams and business stakeholders for Workers Compensation SaaS platforms serving state government compliance reporting across the USA. Acted as technical product owner, defining requirements for .NET Framework and SQL Server solutions and managing regulatory compliance across multiple state jurisdictions."
     },
     {
       "title": "Senior Software Developer",
       "company": "Banco Agromercantil de Guatemala",
       "companyUrl": "https://www.bam.com.gt/",
       "period": "August 2011 – March 2015",
-      "detailedDescription": "Evolved from Junior Developer to technical leader, directing critical software development projects and managing a team of six developers. This progression demonstrated early leadership potential while maintaining deep hands-on technical expertise in enterprise banking systems.<br><br>Led complex modernization initiatives including migration from legacy COBOL systems to .NET Framework and integration of third-party services into e-Banking platforms. Coordinated with Software Architects to establish technical standards and collaborated regularly with business stakeholders to align implementation strategies with organizational goals.<br><br>Developed expertise in enterprise-scale challenges through projects spanning core banking engine modules (COBIS), ETL processes for Business Objects BI platform, and custom ticketing systems for ISO 20,000 certification. Established proficiency in project planning using Microsoft Project and maintained production support responsibilities.<br><br>This role solidified my foundation in balancing technical excellence with business requirements—skills that continue to drive my approach to technology leadership and strategic decision-making."
-    },
-    {
-      "title": "Junior Software Developer",
-      "company": "Citi",
-      "companyUrl": "https://www.citigroup.com/citi/",
-      "period": "March 2011 – August 2011",
-      "detailedDescription": "Launched professional career contributing to e-Banking systems across Central America, gaining essential foundation in enterprise software development and secure coding practices. Executed full Software Development Lifecycle responsibilities using SQL Server, .NET Framework, C#, and ASP.NET Web Forms within n-layer architectural patterns.<br><br>This early exposure to banking industry standards and security-first development practices established the technical rigor and attention to quality that continues to inform my leadership approach today."
+      "detailedDescription": "Progressed from developer to technical lead within 3.5 years, directing a team of 6 on mission-critical enterprise banking systems.<br><br><ul><li>Led COBOL-to-.NET modernization initiatives and third-party e-Banking integrations</li><li>Delivered ETL solutions for Business Objects BI platform and core banking modules (COBIS)</li><li>Coordinated with Software Architects to establish technical standards; managed project planning (Microsoft Project) and production support</li></ul><strong>Technical Environment:</strong> .NET Framework, C#, SQL Server, COBOL, Business Objects, COBIS"
     }
   ],
   "education": [
@@ -281,7 +274,7 @@
     }
   ],
   "interests": {
-    "summary": "Exploring the world, one adventure at a time! 🌍✈️ A passionate foodie on a delicious journey 🍽️. Engineer by trade, always curious about new tech 📱",
+    "summary": "Technology strategy, global travel, international cuisine, and cinema.",
     "detailed": [
       "Technology Innovation",
       "Global Travel",
@@ -322,7 +315,7 @@
     }
   ],
   "meta": {
-    "description": "Experienced software engineer with a decade of experience in software development, business analysis, project management, and software engineering management. Dedicated to leveraging technology for business growth and success. Let's connect to explore possibilities.",
+    "description": "Technology Director with 15+ years of engineering leadership across enterprise SaaS, banking, and regulated industries. Engineering + Finance + MBA. Cloud-native platform architecture, team scaling, and C-level technology strategy.",
     "keywords": "alvaro enrique ruano, alvaro ruano, aruanoguate, opportuno tech, ticket genial, software engineer, software engineering manager, technology director, azure certified, azure developer, cloud expert, cloud certified",
     "author": "Alvaro Enrique Ruano",
     "canonical": "https://alvaroruano.me",

@@ -49,7 +49,7 @@ class ResumeTemplateEngine {
             <div class="resume-date-mobile d-md-none">
               <span class="text-primary" aria-label="Employment period">${job.period}</span>
             </div>
-            <p>${job.detailedDescription}</p>
+            <div>${job.detailedDescription}</div>
           </div>
           <div class="resume-date text-md-end d-none d-md-block">
             <span class="text-primary" aria-label="Employment period">${job.period}</span>
@@ -279,12 +279,12 @@ ${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
   <main id="main-content" class="container-fluid p-0" role="main">
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about" aria-labelledby="about-heading">
-      <div class="w-100">
+      <div class="w-100 hero-panel">
         <h1 id="about-heading" class="mb-0 text-primary">
           ${personal.name}
         </h1>
-        <br />
-        <p class="lead mb-5">${summary.detailed}</p>
+        <p class="hero-kicker">Technology Director | ${personal.location}</p>
+        <p class="lead mb-5 summary-lead">${summary.detailed}</p>
         
         <!-- Primary Links: LinkedIn & Resume -->
         <div class="contact-section-primary mb-4" role="group" aria-label="Primary professional links">
@@ -356,7 +356,7 @@ ${certifications.map((cert, index) => `        <article class="resume-item d-fle
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="collaborations" aria-labelledby="collaborations-heading">
       <div class="w-100">
         <h2 id="collaborations-heading" class="mb-5">Collaborations</h2>
-  <p class="lead mb-5">I've been mentioned as collaborator on the below open source projects:</p>
+  <p class="lead mb-5 section-intro">Selected open source collaborations and published technical contributions.</p>
         <ul class="fa-ul mb-0" role="list" aria-label="Open source collaborations">
 ${collaborations.map(collab => {
       const referenceLinks = collab.references && collab.references.length > 0
@@ -372,9 +372,9 @@ ${collaborations.map(collab => {
             <a href="${collab.url}" target="_blank"
               rel="noopener" aria-label="Visit ${collab.name} project">${collab.name}</a>: ${collab.role}
             ${versionLinks ? `
-            <br><small class="text-muted mt-1 d-block">${versionLinks}</small>` : ''}
+            <br><small class="text-muted mt-1 d-block collab-links">${versionLinks}</small>` : ''}
             ${referenceLinks ? `
-            <br><small class="text-muted mt-1 d-block">References: ${referenceLinks}</small>` : ''}
+            <br><small class="text-muted mt-1 d-block collab-references">References: ${referenceLinks}</small>` : ''}
           </li>`;
     }).join('\n')}
         </ul>
