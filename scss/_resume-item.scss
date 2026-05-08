@@ -1,17 +1,84 @@
+@use "sass:color";
+@use "variables" as *;
+
 section.resume-section {
   padding-top: 5rem !important;
   padding-bottom: 5rem !important;
   max-width: 75rem;
+
   .resume-item {
-    .resume-content {}
+    padding: 1.7rem 1.85rem;
+    border-radius: 1.1rem;
+    border-left: 0.28rem solid rgba($primary, 0.9);
+    background: rgba($white, 0.94);
+    box-shadow: 0 12px 30px rgba(33, 37, 41, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(33, 37, 41, 0.07);
+    }
+
+    .resume-content {
+      h3 {
+        line-height: 1.15;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .subheading {
+        color: $gray-700;
+      }
+
+      > div {
+        color: $gray-700;
+        line-height: 1.7;
+      }
+
+      ul {
+        margin: 1rem 0 1rem 0;
+        padding-left: 1.35rem;
+
+        li {
+          margin-bottom: 0.55rem;
+          padding-left: 0.15rem;
+
+          &::marker {
+            color: $primary;
+          }
+        }
+      }
+
+      strong {
+        display: block;
+        margin-top: 0.65rem;
+        margin-bottom: 0.1rem;
+        color: color.adjust($primary, $lightness: -8%);
+        letter-spacing: 0.04rem;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+    }
+
     .resume-date {
       min-width: none;
+      align-self: flex-start;
+
+      .text-primary {
+        display: inline-block;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: rgba($primary, 0.08);
+        color: color.adjust($primary, $lightness: -6%) !important;
+        font-weight: 700;
+        letter-spacing: 0.03rem;
+      }
     }
   }
 }
 @media (min-width: 768px) {
   section.resume-section {
     min-height: 100vh;
+
     .resume-item {
       .resume-date {
         min-width: 18rem;
@@ -23,5 +90,18 @@ section.resume-section {
   section.resume-section {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  section.resume-section {
+    .resume-item {
+      padding: 1.2rem 1rem;
+      border-radius: 0.95rem;
+
+      .resume-date {
+        margin-top: 0.5rem;
+      }
+    }
   }
 }

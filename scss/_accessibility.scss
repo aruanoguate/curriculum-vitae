@@ -45,11 +45,21 @@ select:focus,
 .nav-link:focus,
 .navbar-brand:focus,
 .social-icon:focus {
-  outline: 3px solid #000 !important;
+  outline: 3px solid #0f3b6b !important;
   outline-offset: 2px !important;
-  background-color: #ffff00 !important; // High contrast yellow
-  color: #000 !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
   text-decoration: underline !important;
+  border-radius: 0.3rem;
+}
+
+.nav-link:focus,
+.nav-link:focus-visible,
+.navbar-brand:focus,
+.navbar-brand:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none !important;
 }
 
 // Ensure links have sufficient contrast
@@ -92,10 +102,11 @@ a {
     }
     
     &:focus {
-      outline: 3px solid #000 !important;
+      outline: 3px solid #0f3b6b !important;
       outline-offset: 2px !important;
-      background-color: #ffff00 !important;
-      color: #000 !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      color: #0f3b6b !important;
     }
   }
 }
@@ -118,7 +129,7 @@ a {
   &:focus {
     outline: 3px solid #fff !important;
     outline-offset: 2px !important;
-    background-color: #000 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
   }
 }
 
@@ -131,10 +142,11 @@ a {
   }
   
   &:focus {
-    outline: 3px solid #000 !important;
+    outline: 3px solid #0f3b6b !important;
     outline-offset: 2px !important;
-    background-color: #ffff00 !important;
-    color: #000 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: #0f3b6b !important;
   }
 }
 

@@ -7,7 +7,10 @@
 body {
   @include body-font;
   padding-top: 54px;
-  color: $gray-600;
+  color: $gray-700;
+  background:
+    radial-gradient(circle at top right, rgba($primary, 0.08), transparent 28%),
+    linear-gradient(180deg, #f7fafc 0%, #eef3f7 100%);
 }
 
 // Mobile-specific adjustments
@@ -34,11 +37,12 @@ h6 {
   font-weight: 700;
   text-transform: uppercase;
   color: $gray-800;
+  letter-spacing: 0.04rem;
 }
 
 h1 {
-  font-size: 6rem;
-  line-height: 5.5rem;
+  font-size: 5.35rem;
+  line-height: 4.95rem;
 }
 
 // Mobile responsive typography
@@ -81,6 +85,20 @@ h1 {
 
 h2 {
   font-size: 3.5rem;
+  position: relative;
+  margin-bottom: 3rem !important;
+  padding-bottom: 0.85rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 4.5rem;
+    height: 0.3rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, $primary 0%, color.adjust($primary, $lightness: 22%) 100%);
+  }
 }
 
 h3 {
@@ -90,6 +108,47 @@ h3 {
 p.lead {
   font-size: 1.15rem;
   font-weight: 400;
+  line-height: 1.75;
+}
+
+.summary-lead,
+.section-intro {
+  color: $gray-700;
+}
+
+main {
+  position: relative;
+}
+
+.hero-panel {
+  padding: 2.25rem 2.35rem 1.9rem;
+  border-radius: 1.4rem;
+  background: rgba($white, 0.92);
+  box-shadow: 0 18px 44px rgba(33, 37, 41, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+#about {
+  .hero-kicker {
+    margin: 1rem 0 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+    color: $gray-600;
+  }
+
+  .summary-lead {
+    max-width: 62rem;
+    color: $gray-800;
+  }
+
+  h1 {
+    max-width: 18ch;
+    font-size: clamp(4rem, 7vw, 5.35rem);
+    line-height: 0.92;
+    letter-spacing: 0.06rem;
+  }
 }
 
 .subheading {
@@ -146,23 +205,42 @@ p.lead {
 .contact-section-primary,
 .contact-section-info,
 .contact-section-links {
+  .fa-ul {
+    margin-left: 1.25rem;
+  }
+
   .fa-ul li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.55rem;
+    padding: 0.2rem 0 0.2rem 0.15rem;
     
     i.fa-li {
-      color: $gray-600;
+      color: $primary;
     }
     
     a {
       font-size: 1rem;
-      color: $gray-700;
+      color: $gray-800;
+      font-weight: 500;
       text-decoration: none;
       
       &:hover {
         color: $primary;
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
+  }
+}
+
+.contact-section-primary .fa-ul li {
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid rgba($primary, 0.14);
+}
+
+section.resume-section {
+  .w-100 {
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -211,5 +289,53 @@ p.lead {
         }
       }
     }
+  }
+}
+
+#collaborations {
+  .fa-ul li {
+    margin-bottom: 0.9rem;
+    padding: 0.8rem 0 0.8rem 0.15rem;
+    border-bottom: 1px solid rgba($primary, 0.12);
+
+    > a {
+      color: $gray-800;
+      font-weight: 700;
+    }
+
+    i.fa-li {
+      color: $primary;
+    }
+  }
+
+  .collab-links a,
+  .collab-references a {
+    display: inline-block;
+    margin: 0.15rem 0.35rem 0.15rem 0;
+    padding: 0;
+    border-radius: 999px;
+    color: color.adjust($primary, $lightness: -10%) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-panel {
+    padding: 1.45rem 1.2rem;
+    border-radius: 1.05rem;
+  }
+
+  #about {
+    .hero-kicker {
+      font-size: 0.88rem;
+      letter-spacing: 0.11rem;
+    }
+
+    h1 {
+      max-width: none;
+    }
+  }
+
+  h2 {
+    margin-bottom: 2rem !important;
   }
 }

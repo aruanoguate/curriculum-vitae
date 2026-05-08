@@ -90,7 +90,7 @@
   p.lead {
     font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   
   // Better spacing for lists
@@ -125,7 +125,7 @@
   
   // Resume items spacing
   .resume-item {
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
     
     // On mobile, stack the content vertically
     &.d-flex.flex-column.flex-md-row {
@@ -159,7 +159,7 @@
       
       p, ul {
         line-height: 1.5;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
       }
     }
     
