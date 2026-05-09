@@ -10,7 +10,7 @@
     "resumePdf": "generated-pdf/AlvaroRuano_Resume.pdf"
   },
   "summary": {
-    "detailed": "Technology Director with 15+ years leading engineering organizations across enterprise SaaS, regulated industries, and banking. Engineering degree, Master of Finance, and MBA — a combination that bridges technical depth with financial rigor and business strategy.<br><br>Proven record scaling cloud-native platforms on AWS and Azure, directing teams from startup to enterprise scale, and representing technology at the C-suite level. Experienced in multi-tenant B2B SaaS architecture, DevOps transformation, and engineering budget ownership.<br><br>Core technical expertise in C#/.NET, TypeScript/Angular, cloud infrastructure (AWS/Azure), CI/CD automation, and enterprise data platforms.<br><br>Dual-language executive (Spanish — native; English — proficient) with operational experience spanning Latin America and North America.<br><br>Available for Director of Engineering, VP of Engineering, or senior technology consulting engagements."
+    "detailed": "Technology Director with 15+ years leading engineering organizations across enterprise SaaS, regulated industries, and banking. Engineering degree, Master of Finance, and MBA — a combination that bridges technical depth with financial rigor and business strategy.<br><br>Proven record scaling cloud-native platforms on AWS and Azure, directing teams from startup to enterprise scale, and representing technology at the C-suite level. Experienced in multi-tenant B2B SaaS architecture, DevOps transformation, and engineering budget ownership.<br><br>Core technical expertise in cloud infrastructure, AWS serverless development, TypeScript/Node.js, software architecture, CI/CD automation, and enterprise platforms, with additional experience in C#/.NET environments."
   },
   "contact": {
     "primary": [
@@ -152,11 +152,11 @@
       "Cross-functional Collaboration"
     ],
     "technical": [
-      "Cloud Architecture (Azure, AWS)",
-      "C#, .NET Framework/.NET Core",
-      "JavaScript, TypeScript, Angular",
-      "SQL Server, Database Design",
-      "DevOps, CI/CD"
+      "Cloud Architecture (AWS, Azure)",
+      "AWS Serverless, DevOps, CI/CD",
+      "TypeScript, Node.js, JavaScript",
+      "Software Architecture, Enterprise Platforms",
+      "C#, .NET, SQL Server"
     ]
   },
   "collaborations": [
