@@ -120,11 +120,26 @@ ${edu.achievements.map(achievement => `              <li role="listitem">
 <html lang="en">
 
 <head>
-${googleAnalyticsId ? `  <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}"></script>
+${googleAnalyticsId ? `  <!-- Google Consent Mode v2 - Set defaults before gtag loads -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args){dataLayer.push(...args);} 
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+    // Restore consent if previously granted
+    if (localStorage.getItem('consent-analytics') === 'granted') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+    }
+  </script>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', '${googleAnalyticsId}');
   </script>` : ''}
@@ -419,6 +434,37 @@ ${social.map(link => `                <div role="listitem">
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
+
+${googleAnalyticsId ? `  <!-- Cookie Consent Banner -->
+  <div id="consent-banner" role="dialog" aria-label="Cookie consent" aria-modal="false" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:1rem 1.5rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);font-family:inherit;">
+    <div style="max-width:1140px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+      <p style="margin:0;flex:1;min-width:200px;font-size:0.9rem;line-height:1.5;">
+        This site uses cookies and Google Analytics to measure traffic and improve your experience.
+        <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener" style="color:#64b5f6;">Learn more</a>
+      </p>
+      <div style="display:flex;gap:0.5rem;flex-shrink:0;">
+        <button id="consent-reject" style="padding:0.5rem 1.25rem;border:1px solid #64b5f6;background:transparent;color:#64b5f6;border-radius:4px;cursor:pointer;font-size:0.85rem;">Decline</button>
+        <button id="consent-accept" style="padding:0.5rem 1.25rem;border:none;background:#64b5f6;color:#1a1a2e;border-radius:4px;cursor:pointer;font-weight:bold;font-size:0.85rem;">Accept</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('consent-analytics');
+      if (!stored) {
+        document.getElementById('consent-banner').style.display = 'block';
+      }
+      document.getElementById('consent-accept').addEventListener('click', function() {
+        localStorage.setItem('consent-analytics', 'granted');
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        document.getElementById('consent-banner').style.display = 'none';
+      });
+      document.getElementById('consent-reject').addEventListener('click', function() {
+        localStorage.setItem('consent-analytics', 'denied');
+        document.getElementById('consent-banner').style.display = 'none';
+      });
+    })();
+  </script>` : ''}
 
 </body>
 
