@@ -167,6 +167,10 @@
       "description": "VS Code extension that visualizes JSON file size by path - interactive tree explorer with size bars, heat-map coloring, and one-click navigation.",
       "versions": [
         {
+          "version": "Landing",
+          "url": "https://aruanoguate.github.io/file-tree-size/"
+        },
+        {
           "version": "GitHub Repo",
           "url": "https://github.com/aruanoguate/file-tree-size"
         },
@@ -186,6 +190,10 @@
       "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size",
       "description": "VS Code extension that visualizes XML and SOAP payload sizes by element, attribute, text, and CDATA in an interactive tree.",
       "versions": [
+        {
+          "version": "Landing",
+          "url": "https://aruanoguate.github.io/file-tree-size/"
+        },
         {
           "version": "GitHub Repo",
           "url": "https://github.com/aruanoguate/file-tree-size"
