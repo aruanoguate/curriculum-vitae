@@ -177,10 +177,6 @@
         {
           "version": "Marketplace",
           "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.json-treesize"
-        },
-        {
-          "version": "Open VSX",
-          "url": "https://open-vsx.org/extension/AlvaroEnriqueRuano/json-treesize"
         }
       ]
     },
@@ -201,10 +197,6 @@
         {
           "version": "Marketplace",
           "url": "https://marketplace.visualstudio.com/items?itemName=AlvaroEnriqueRuano.xml-tree-size"
-        },
-        {
-          "version": "Open VSX",
-          "url": "https://open-vsx.org/extension/AlvaroEnriqueRuano/xml-tree-size"
         }
       ]
     },
