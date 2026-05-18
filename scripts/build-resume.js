@@ -4,6 +4,7 @@ const ResumeTemplateEngine = require('./template-engine');
 const { generateResumePDF } = require('./generate-pdf');
 const fs = require('fs-extra');
 const path = require('node:path');
+const { PurgeCSS } = require('purgecss');
 
 async function buildResume() {
     console.log('🏗️  Starting resume build process...');
@@ -62,12 +63,12 @@ async function buildResume() {
             console.log('   ✅ Copied vendor/ (initial)');
         }
 
-        // Ensure img copied only once (static profile image etc.)
+        // Ensure img is synced (copies new/updated files)
         const imgSrc = path.join(__dirname, '..', 'img');
         const imgDest = path.join(distDir, 'img');
-        if (!(await fs.pathExists(imgDest)) && await fs.pathExists(imgSrc)) {
-            await fs.copy(imgSrc, imgDest);
-            console.log('   ✅ Copied img/ (initial)');
+        if (await fs.pathExists(imgSrc)) {
+            await fs.copy(imgSrc, imgDest, { overwrite: false });
+            console.log('   ✅ Synced img/');
         }
 
         // Ensure docs copied only once (certifications & diplomas) to prevent unlink race on rapid rebuilds
@@ -99,6 +100,25 @@ async function buildResume() {
 
         // Ensure generated-pdf directory exists
         await fs.ensureDir(generatedPdfDir);
+
+        // PurgeCSS: Remove unused Bootstrap CSS
+        console.log('🧹 Purging unused CSS...');
+        const bootstrapCssPath = path.join(distDir, 'vendor', 'bootstrap', 'css', 'bootstrap.min.css');
+        if (await fs.pathExists(bootstrapCssPath)) {
+            const purgeResult = await new PurgeCSS().purge({
+                content: [path.join(distDir, '**/*.html')],
+                css: [bootstrapCssPath],
+                safelist: {
+                    standard: [/^collapse/, /^navbar/, /^nav/, /^show/, /^active/, /^fade/, /^modal/, /^d-/, /^col-/, /^row/, /^container/, /^flex/, /^align-/, /^justify-/, /^text-/, /^mb-/, /^mt-/, /^me-/, /^ms-/, /^p-/, /^pb-/, /^pt-/, /^ps-/, /^pe-/, /^rounded/, /^img-fluid/, /^btn/, /^bg-/, /^fs-/, /^fw-/, /^lead/, /^list-/],
+                    greedy: [/collaps/]
+                }
+            });
+            if (purgeResult.length > 0) {
+                await fs.writeFile(bootstrapCssPath, purgeResult[0].css);
+                const newSize = Buffer.byteLength(purgeResult[0].css);
+                console.log(`   ✅ Bootstrap CSS purged: ${(newSize / 1024).toFixed(1)} KiB`);
+            }
+        }
 
         // Generate PDF from the template (isolation from static certification docs)
         console.log('📑 Generating PDF...');

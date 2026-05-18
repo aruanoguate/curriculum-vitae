@@ -181,15 +181,23 @@ ${googleAnalyticsId ? `  <!-- Google Consent Mode v2 - Set defaults before gtag 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" type="image/webp" href="img/profile.webp">
 
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=Muli:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
+  <!-- Critical CSS (custom styles load synchronously) -->
   <link href="css/resume.min.css" rel="stylesheet">
+
+  <!-- Non-critical CSS: Bootstrap (deferred) -->
+  <link rel="preload" href="vendor/bootstrap/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></noscript>
+
+  <!-- Non-critical CSS: Font Awesome (deferred) -->
+  <link rel="preload" href="vendor/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"></noscript>
+
+  <!-- Google Fonts (non-render-blocking) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=Muli:ital,wght@0,400;0,800;1,400;1,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=Muli:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet"></noscript>
 
   <!-- JSON-LD Structured Data for SEO -->
   <script type="application/ld+json">
@@ -255,11 +263,17 @@ ${googleAnalyticsId ? `  <!-- Google Consent Mode v2 - Set defaults before gtag 
     <a class="navbar-brand js-scroll-trigger" href="#page-top" aria-label="Go to top of page">
       <!-- Desktop version - full size profile image -->
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img">
+        <picture>
+          <source srcset="img/profile.webp" type="image/webp">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img" width="500" height="500">
+        </picture>
       </span>
       <!-- Mobile version - compact profile with name/initials -->
       <span class="d-lg-none d-flex align-items-center">
-        <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img">
+        <picture>
+          <source srcset="img/profile.webp" type="image/webp">
+          <img class="img-fluid img-profile-mobile rounded-circle me-2" src="${personal.profileImage}" alt="Professional headshot of ${ResumeTemplateEngine.escape(personal.name)}" role="img" width="500" height="500">
+        </picture>
         <span class="navbar-brand-text" aria-label="Initials: ${initials}">${initials}</span>
       </span>
     </a>
@@ -426,14 +440,14 @@ ${social.map(link => `                <div role="listitem">
   </main>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js" defer></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
 
   <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js" defer></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/resume.min.js"></script>
+  <script src="js/resume.min.js" defer></script>
 
 ${googleAnalyticsId ? `  <!-- Cookie Consent Banner -->
   <div id="consent-banner" role="dialog" aria-label="Cookie consent" aria-modal="false" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:1rem 1.5rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);font-family:inherit;">
